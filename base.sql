@@ -1,0 +1,13 @@
+CREATE TABLE postagem (
+  id UUID PRIMARY KEY,
+  title VARCHAR(300) NOT NULL,
+  content TEXT,
+  author VARCHAR(255) NOT NULL,
+  turma VARCHAR(50) NOT NULL,
+  creation_date TIMESTAMP WITHOUT TIME ZONE
+);
+
+CREATE TABLE turma (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+);
