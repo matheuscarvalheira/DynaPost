@@ -9,5 +9,5 @@ CREATE TABLE postagem (
 
 CREATE TABLE turma (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL
 );
