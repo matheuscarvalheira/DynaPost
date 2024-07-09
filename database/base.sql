@@ -1,18 +1,18 @@
-CREATE TABLE post (
-  id UUID PRIMARY KEY,
-  title VARCHAR(300) NOT NULL,
-  content TEXT NOT NULL,
-  author VARCHAR(255) NOT NULL,
-  team VARCHAR(50) NOT NULL,
-  creation_date TIMESTAMP WITHOUT TIME ZONE
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE IF NOT EXISTS post (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    title VARCHAR NOT NULL,
+    content TEXT NOT NULL,
+    author VARCHAR NOT NULL,
+    team VARCHAR NOT NULL,
+    creation_date TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE team (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL
 );
-
-
 
 INSERT INTO team (name) VALUES ('Turma A');
 INSERT INTO team (name) VALUES ('Turma B');

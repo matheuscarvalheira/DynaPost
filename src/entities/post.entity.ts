@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import { IPost } from './models/post.interface'
 
-@Entity({ name: 'post' })
+@Entity('post')
 export class Post implements IPost {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',

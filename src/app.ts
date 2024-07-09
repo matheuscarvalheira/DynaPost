@@ -3,4 +3,4 @@ import { postRoutes } from './http/controllers/post/routes'
 
 export const app = express()
 
-app.use(postRoutes)
+postRoutes(app)
