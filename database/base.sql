@@ -11,3 +11,9 @@ CREATE TABLE team (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL
 );
+
+
+
+INSERT INTO team (name) VALUES ('Turma A');
+INSERT INTO team (name) VALUES ('Turma B');
+INSERT INTO team (name) VALUES ('Turma C');
