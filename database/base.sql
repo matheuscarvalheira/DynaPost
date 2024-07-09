@@ -1,4 +1,4 @@
-CREATE TABLE postagem (
+CREATE TABLE post (
   id UUID PRIMARY KEY,
   title VARCHAR(300) NOT NULL,
   content TEXT,
