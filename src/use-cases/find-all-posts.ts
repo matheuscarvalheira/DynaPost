@@ -1,6 +1,6 @@
 import { IPostRepository } from '@/repositories/post.repository.interface'
 
-export class FindAllPosts {
+export class FindAllPostsUseCase {
   constructor(private postRepository: IPostRepository) {}
 
   async handler(page: number, limit: number) {

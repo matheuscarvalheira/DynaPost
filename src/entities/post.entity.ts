@@ -1,42 +1,41 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import { IPost } from './models/post.interface'
 
-@Entity({name: 'post'})
+@Entity({ name: 'post' })
 export class Post implements IPost {
-
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
   })
-  id?: number | undefined
+  id?: string | undefined
 
   @Column({
-    name: 'title', 
+    name: 'title',
     type: 'varchar',
   })
   title: string
 
   @Column({
-    name: 'content', 
+    name: 'content',
     type: 'text',
   })
   content: string
 
   @Column({
-    name: 'author', 
+    name: 'author',
     type: 'varchar',
   })
   author: string
 
   @Column({
-    name: 'team', 
+    name: 'team',
     type: 'varchar',
   })
   team: string
 
   @Column({
-    name: 'creation_date', 
+    name: 'creation_date',
     type: 'timestamp without time zone',
-    default: ()=> 'CURRENT_TIMESTAMP',
+    default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date
 

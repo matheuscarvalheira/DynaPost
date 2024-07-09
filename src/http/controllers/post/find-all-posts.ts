@@ -14,5 +14,5 @@ export async function findAllPosts(req: Request, res: Response) {
 
   const posts = await findAllPostsUseCase.handler(page, limit)
 
-  return res.status(200).send(posts)
+  return res.status(200).json({ message: 'Success', data: posts })
 }
