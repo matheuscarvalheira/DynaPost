@@ -1,8 +1,8 @@
-import { Application } from 'express'
 import { findAllPosts } from './find-all-posts'
 import { findPost } from './find-post'
+import express from 'express'
 
-export async function postRoutes(app: Application) {
-  app.get('/posts', findAllPosts)
-  app.get('/posts/:id', findPost)
-}
+export const postRouter = express.Router()
+
+postRouter.get('/posts', findAllPosts)
+postRouter.get('/posts/:id', findPost)
