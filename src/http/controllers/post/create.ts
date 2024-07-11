@@ -8,12 +8,12 @@ export async function create(request: Request, response: Response) {
     content: z.string(),
     author: z.string(),
     team: z.string(),
-    createdAt: z.date(),
   })
 
-  const { title, content, author, team, createdAt } = registerBodySchema.parse(
+  const { title, content, author, team } = registerBodySchema.parse(
     request.body,
   )
+
   const createPostUseCase = makeCreatePostUseCase()
 
   const post = await createPostUseCase.handler({
@@ -21,7 +21,6 @@ export async function create(request: Request, response: Response) {
     content,
     author,
     team,
-    createdAt,
   })
 
   return response.status(201).json(post)
