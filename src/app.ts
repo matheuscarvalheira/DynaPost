@@ -5,6 +5,7 @@ import { postRoutes } from './http/controllers/post/routes'
 
 export const app = express()
 
+app.use(express.json())
 postRoutes(app)
 
 app.use((_, __, next) => {
@@ -12,4 +13,3 @@ app.use((_, __, next) => {
 })
 
 app.use(globalErrorHandler)
-app.use(express.json())
