@@ -1,4 +1,4 @@
-import { makeRemovePostUseCase } from '@/use-cases/post/factory/make-remove-post-use-case'
+import { makeRemoveStudentUseCase } from '@/use-cases/student/factory/make-remove-student-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
@@ -9,9 +9,9 @@ export async function remove(req: Request, res: Response) {
 
   const { id } = removeParamsSchema.parse(req.params)
 
-  const removePostUseCase = makeRemovePostUseCase()
+  const removeStudentUseCase = makeRemoveStudentUseCase()
 
-  await removePostUseCase.handler(id)
+  await removeStudentUseCase.handler(id)
 
   return res.status(204).send()
 }

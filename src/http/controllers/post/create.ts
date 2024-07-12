@@ -1,4 +1,4 @@
-import { makeCreatePostUseCase } from '@/use-cases/factory/make-create-post-use-case'
+import { makeCreatePostUseCase } from '@/use-cases/post/factory/make-create-post-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 

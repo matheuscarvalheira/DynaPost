@@ -1,5 +1,5 @@
 import { PostRepository } from '@/repositories/typeorm/post.repository'
-import { RemovePostUseCase } from '../remove-post'
+import { RemovePostUseCase } from '../post/remove-post'
 
 export function makeRemovePostUseCase() {
   const postRepository = new PostRepository()

@@ -1,5 +1,5 @@
 import { PostRepository } from '@/repositories/typeorm/post.repository'
-import { FindPostUseCase } from '../find-post'
+import { FindPostUseCase } from '../post/find-post'
 
 export function makeFindPostUseCase() {
   const postRepository = new PostRepository()

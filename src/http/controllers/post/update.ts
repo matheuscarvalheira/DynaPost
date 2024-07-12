@@ -1,4 +1,4 @@
-import { makeUpdatePostUseCase } from '@/use-cases/factory/make-update-post-use-case'
+import { makeUpdatePostUseCase } from '@/use-cases/post/factory/make-update-post-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 

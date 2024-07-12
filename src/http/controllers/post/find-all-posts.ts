@@ -1,4 +1,4 @@
-import { makeFindAllPostUseCase } from '@/use-cases/factory/make-find-all-post-use-case'
+import { makeFindAllPostUseCase } from '@/use-cases/post/factory/make-find-all-post-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
