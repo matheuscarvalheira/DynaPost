@@ -8,3 +8,11 @@ CREATE TABLE IF NOT EXISTS post (
     team VARCHAR NOT NULL,
     creation_date TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE "teacher" (
+  "id" uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  "name" varchar,
+  "active" bool,
+  "created_at" timestamp,
+  "modified_at" timestamp
+);

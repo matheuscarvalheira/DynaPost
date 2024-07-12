@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm'
 import { env } from '@/env'
 import { Post } from '@/entities/post.entity'
+import { Teacher } from '@/entities/teacher.entity'
 
 export const appDataSource = new DataSource({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,7 +11,7 @@ export const appDataSource = new DataSource({
   username: env.DATABASE_USER,
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_NAME,
-  entities: [Post],
+  entities: [Post, Teacher],
   migrations: [],
   logging: env.NODE_ENV === 'development',
 })
