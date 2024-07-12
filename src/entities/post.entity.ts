@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { IPost } from './models/post.interface'
 
 @Entity('post')
@@ -15,41 +21,32 @@ export class Post implements IPost {
   title: string
 
   @Column({
-    name: 'content',
+    name: 'body',
     type: 'text',
   })
-  content: string
+  body: string
 
   @Column({
-    name: 'author',
-    type: 'varchar',
+    name: 'published',
+    type: 'bool',
   })
-  author: string
+  published: boolean
 
-  @Column({
-    name: 'team',
-    type: 'varchar',
-  })
-  team: string
-
-  @Column({
-    name: 'creation_date',
-    type: 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'time without time zone',
   })
   createdAt: Date
 
-  constructor(
-    title: string,
-    content: string,
-    author: string,
-    team: string,
-    createdAt: Date,
-  ) {
+  @UpdateDateColumn({
+    name: 'modified_at',
+    type: 'time without time zone',
+  })
+  modifiedAt: Date
+
+  constructor(title: string, body: string, published: boolean) {
     this.title = title
-    this.content = content
-    this.author = author
-    this.team = team
-    this.createdAt = createdAt
+    this.body = body
+    this.published = published
   }
 }

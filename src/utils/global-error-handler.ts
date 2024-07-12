@@ -1,13 +1,9 @@
 import { env } from '@/env'
-import { Response, Request, NextFunction } from 'express'
+import { Response, Request } from 'express'
 import { ZodError } from 'zod'
 
 interface ErrorHandlerMap {
-  [key: string]: (
-    error: Error | ZodError,
-    req: Request,
-    res: Response,
-  ) => void
+  [key: string]: (error: Error | ZodError, req: Request, res: Response) => void
 }
 
 export const errorHandlerMap: ErrorHandlerMap = {
@@ -23,17 +19,12 @@ export const errorHandlerMap: ErrorHandlerMap = {
   InvalidCredentialsError: (error, __, res) => {
     return res.status(404).json({ message: error.message })
   },
-  NotFoundError: (error, _, res)=> {
+  NotFoundError: (error, _, res) => {
     return res.status(404).json({ message: error.message })
   },
 }
 
-export const globalErrorHandler = (
-  error: Error,
-  _: Request,
-  res: Response,
-  __: NextFunction,
-) => {
+export const globalErrorHandler = (error: Error, _: Request, res: Response) => {
   if (env.NODE_ENV === 'development') {
     console.error(error)
   }
