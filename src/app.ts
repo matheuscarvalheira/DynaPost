@@ -1,15 +1,17 @@
-import express from 'express'
-import createError from 'http-errors'
-import { globalErrorHandler } from './utils/global-error-handler'
-import { postRoutes } from './http/controllers/post/routes'
+import express from "express";
+import createError from "http-errors";
+import { globalErrorHandler } from "./utils/global-error-handler";
+import { postRoutes } from "./http/controllers/post/routes";
+import { classroomRoutes } from "./http/controllers/classroom/routes";
 
-export const app = express()
+export const app = express();
 
-postRoutes(app)
+classroomRoutes(app);
+postRoutes(app);
 
 app.use((_, __, next) => {
-  next(createError(404, 'Endpoint not found'))
-})
+  next(createError(404, "Endpoint not found"));
+});
 
-app.use(globalErrorHandler)
-app.use(express.json())
+app.use(globalErrorHandler);
+app.use(express.json());

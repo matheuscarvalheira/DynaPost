@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { IClassroom } from "./models/classroom.interface";
 
-@Entity({ name: "Classroom" })
+@Entity({ name: "classroom" })
 export class Classroom implements IClassroom {
   @PrimaryGeneratedColumn("increment", {
     name: "id",
@@ -16,19 +16,21 @@ export class Classroom implements IClassroom {
 
   @Column({
     name: "created_at",
-    type: "timestamp",
+    type: "timestamp without time zone",
+    default: () => "CURRENT_TIMESTAMP",
   })
-  created_at: Date;
+  createdAt: Date;
 
   @Column({
     name: "modified_at",
-    type: "timestamp",
+    type: "timestamp without time zone",
+    default: () => "CURRENT_TIMESTAMP",
   })
-  modified_at: Date;
+  modifiedAt: Date;
 
-  constructor(name: string, created_at: Date, modified_at: Date) {
+  constructor(name: string, createdAt: Date, modifiedAt: Date) {
     this.name = name;
-    this.created_at = created_at;
-    this.modified_at = modified_at;
+    this.createdAt = createdAt;
+    this.modifiedAt = modifiedAt;
   }
 }
