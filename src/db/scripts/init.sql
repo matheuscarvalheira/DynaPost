@@ -8,12 +8,3 @@ CREATE TABLE IF NOT EXISTS post (
     team VARCHAR NOT NULL,
     creation_date TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE team (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-);
-
-INSERT INTO team (name) VALUES ('Turma A');
-INSERT INTO team (name) VALUES ('Turma B');
-INSERT INTO team (name) VALUES ('Turma C');

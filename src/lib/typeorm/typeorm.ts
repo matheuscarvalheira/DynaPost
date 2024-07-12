@@ -3,7 +3,8 @@ import { env } from '@/env'
 import { Post } from '@/entities/post.entity'
 
 export const appDataSource = new DataSource({
-  type: 'postgres',
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  type: env.DATABASE_TYPE as any,
   host: env.DATABASE_HOST,
   port: env.DATABASE_PORT,
   username: env.DATABASE_USER,
