@@ -17,36 +17,35 @@ export class Post implements IPost {
   @Column({
     name: 'title',
     type: 'varchar',
+    nullable: false,
   })
   title: string
 
   @Column({
     name: 'body',
     type: 'text',
+    nullable: false,
   })
   body: string
 
   @Column({
     name: 'published',
     type: 'bool',
+    default: true,
   })
   published: boolean
 
   @CreateDateColumn({
     name: 'created_at',
-    type: 'time without time zone',
+    type: 'timestamp',
+    nullable: false,
   })
   createdAt: Date
 
   @UpdateDateColumn({
     name: 'modified_at',
-    type: 'time without time zone',
+    type: 'timestamp',
+    nullable: false,
   })
   modifiedAt: Date
-
-  constructor(title: string, body: string, published: boolean) {
-    this.title = title
-    this.body = body
-    this.published = published
-  }
 }

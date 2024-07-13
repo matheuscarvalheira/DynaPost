@@ -2,7 +2,7 @@ export interface IPost {
   id?: string
   title: string
   body: string
-  published: boolean
+  published?: boolean
   createdAt?: Date
   modifiedAt?: Date
 }
