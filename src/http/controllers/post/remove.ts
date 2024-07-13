@@ -1,4 +1,4 @@
-import { makeRemovePostUseCase } from '@/use-cases/factory/make-remove-post-use-case'
+import { makeRemovePostUseCase } from '@/use-cases/post/factory/make-remove-post-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
