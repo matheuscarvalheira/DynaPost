@@ -10,8 +10,8 @@ export class MockPosts1720871000822 implements MigrationInterface {
         title: `Post Title ${i}`,
         body: `This is the body of post ${i}.`,
         published: true,
-        created_at: new Date(),
-        modified_at: new Date(),
+        createdAt: new Date(),
+        modifiedAt: new Date(),
       })
     }
 

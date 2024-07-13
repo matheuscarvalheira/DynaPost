@@ -39,3 +39,8 @@ docker exec -it dynapost_grupo1 psql -U postgres -d dynapost
 ```
 \d nome_da_tabela
 ```
+
+## Criar migrações
+```
+npx typeorm migration:create src/migrations/nome_migracao   
+```
