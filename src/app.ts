@@ -5,6 +5,7 @@ import { postRoutes } from './http/controllers/post/routes'
 import { teacherRoutes } from './http/controllers/teacher/routes'
 
 export const app = express()
+app.use(express.json())
 
 postRoutes(app)
 teacherRoutes(app)
@@ -14,4 +15,3 @@ app.use((_, __, next) => {
 })
 
 app.use(globalErrorHandler)
-app.use(express.json())
