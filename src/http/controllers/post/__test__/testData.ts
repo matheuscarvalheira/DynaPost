@@ -3,6 +3,7 @@ export const mockData = [
     id: '836f29ac-9398-4d5c-bc05-e677ab8746b8',
     title: 'Lorem Ipsum',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    published: true,
   },
   {
     title: 'Suspendisse',
