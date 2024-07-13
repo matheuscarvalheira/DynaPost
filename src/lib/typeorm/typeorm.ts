@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm'
 import { env } from '@/env'
 import { Post } from '@/entities/post.entity'
+import { MockPostWithTeachersAndClassroom1720873181668 } from '@/migrations/1720873181668-mockPostWithTeachersAndClassroom'
 
 export const appDataSource = new DataSource({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,8 +12,8 @@ export const appDataSource = new DataSource({
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_NAME,
   entities: [Post],
-  migrations: [],
-  synchronize: env.NODE_ENV === 'development',
+  migrations: [MockPostWithTeachersAndClassroom1720873181668],
+  synchronize: false,
   logging: env.NODE_ENV === 'development',
 })
 
