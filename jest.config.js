@@ -6,6 +6,9 @@ module.exports = {
     'src/**/*.ts',
     '!src/**/*.test.ts',
     '!src/migrations/**',
+    '!src/server.ts',
+    '!src/env/**',
+    '!src/lib/typeorm/typeorm.ts',
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
