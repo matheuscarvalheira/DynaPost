@@ -7,8 +7,8 @@
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
-    "dbup": "docker-compose -f src/db/docker-compose.yml up -d",
-    "dbdown": "docker-compose -f src/db/docker-compose.yml down"
+    "dbup": "docker-compose -f db/docker-compose.yml up -d",
+    "dbdown": "docker-compose -f db/docker-compose.yml down"
   },
   "keywords": [],
   "author": "",
