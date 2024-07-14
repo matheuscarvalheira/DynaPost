@@ -2,10 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
 import { IPost } from './models/post.interface'
+import { PostTeacher } from './post-teacher.entity'
+import { PostClassroom } from './post-classroom.entity'
 
 @Entity('post')
 export class Post implements IPost {
@@ -48,4 +51,10 @@ export class Post implements IPost {
     nullable: false,
   })
   modifiedAt: Date
+
+  @OneToMany(() => PostTeacher, (postTeacher) => postTeacher.post)
+  postTeachers: PostTeacher[]
+
+  @OneToMany(() => PostClassroom, (postClassroom) => postClassroom.post)
+  postClassrooms: PostClassroom[]
 }

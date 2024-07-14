@@ -45,7 +45,7 @@ const mockClassrooms = [
   },
   {
     id: '802fbe1e-91a4-4a17-9021-9587df23c01b',
-    name: 'Programação 1',
+    name: 'Programação 2',
     created_at: new Date(),
     modified_at: new Date(),
   },
