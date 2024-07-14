@@ -10,11 +10,13 @@ export class PostClassroom {
   @PrimaryColumn('uuid')
   classroom_id: string
 
-  @ManyToOne(() => Post, (post) => post.postClassrooms)
+  @ManyToOne(() => Post, (post) => post.postClassrooms, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'post_id' })
   post: Post
 
-  @ManyToOne(() => Classroom, (classroom) => classroom.posts)
+  @ManyToOne(() => Classroom, (classroom) => classroom.posts, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'classroom_id' })
   classroom: Classroom
 }
