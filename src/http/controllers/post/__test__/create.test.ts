@@ -1,41 +1,63 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import request from 'supertest'
 import { app } from '@/app'
-import { PostRepository } from '@/repositories/typeorm/post.repository'
+import { appDataSource } from '@/lib/typeorm/typeorm'
 
-jest.mock('@/repositories/typeorm/post.repository')
+jest.mock('@/lib/typeorm/typeorm.ts', () => {
+  const { DataSource } = require('typeorm')
+  const { Post } = require('@/entities/post.entity')
+  const { Teacher } = require('@/entities/teacher.entity')
+  const { Classroom } = require('@/entities/classroom.entity')
+  const { PostClassroom } = require('@/entities/post-classroom.entity')
+  const { PostTeacher } = require('@/entities/post-teacher.entity')
+  const {
+    MockPostWithTeachersAndClassroom1720873181668,
+  } = require('@/migrations/1720873181668-mockPostWithTeachersAndClassroom')
 
-let mockCreate: jest.SpyInstance
+  const mockDataSource = new DataSource({
+    type: 'sqlite',
+    database: ':memory:',
+    entities: [Post, Teacher, Classroom, PostClassroom, PostTeacher],
+    migrations: [MockPostWithTeachersAndClassroom1720873181668],
+    synchronize: true,
+  })
 
-const createdObject = {
-  title: 'Post 1',
-  body: 'Conteudo da postagem',
-  published: true,
-  id: '3b72dbe7-71c1-458b-aa9d-52d3557a6769',
-}
+  return {
+    appDataSource: mockDataSource,
+  }
+})
 
-describe('base get route', () => {
+describe('post route tests', () => {
   beforeEach(async () => {
-    mockCreate = jest
-      .spyOn(PostRepository.prototype, 'create')
-      .mockResolvedValue(createdObject)
+    await appDataSource.initialize()
+    appDataSource.query(
+      `INSERT INTO teacher (id) VALUES ('1f69a6f0-33b1-4e4d-992d-bf92f0f3069f')`,
+    )
+    appDataSource.query(
+      `INSERT INTO classroom (id) VALUES ('b1871c08-3bf3-48f7-bc24-49e25cfe1990')`,
+    )
   })
 
   afterEach(async () => {
-    mockCreate.mockRestore()
+    await appDataSource.destroy()
   })
 
-  test('base route without params', async () => {
+  test('post route with an object', async () => {
     const postedObject = {
       title: 'Post 1',
       body: 'Conteudo da postagem',
-      published: true,
+      teacher_id: '1f69a6f0-33b1-4e4d-992d-bf92f0f3069f',
+      classroom_id: 'b1871c08-3bf3-48f7-bc24-49e25cfe1990',
     }
 
     const response = await request(app).post(`/posts`).send(postedObject)
     expect(response.status).toBe(201)
     expect(response.headers['content-type']).toMatch(/json/)
-    expect(response.body).toEqual(createdObject)
-    expect(mockCreate).toHaveBeenCalledTimes(1)
-    expect(mockCreate).toHaveBeenCalledWith(postedObject)
+    expect(response.body.title).toEqual(postedObject.title)
+    expect(response.body.body).toEqual(postedObject.body)
+    expect(response.body.teacher_id).toEqual(postedObject.teacher_id)
+    expect(response.body.classroom_id).toEqual(postedObject.classroom_id)
+    expect(response.body).toHaveProperty('createdAt')
+    expect(response.body).toHaveProperty('modifiedAt')
   })
 })

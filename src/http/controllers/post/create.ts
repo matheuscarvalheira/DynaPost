@@ -43,7 +43,7 @@ export async function create(request: Request, response: Response) {
         post_id: post.id,
       })
 
-      return post
+      return { ...post, teacher_id, classroom_id }
     },
   )
 

@@ -9,6 +9,7 @@ import {
 import { IPost } from './models/post.interface'
 import { PostTeacher } from './post-teacher.entity'
 import { PostClassroom } from './post-classroom.entity'
+import { env } from '@/env'
 
 @Entity('post')
 export class Post implements IPost {
@@ -33,21 +34,21 @@ export class Post implements IPost {
 
   @Column({
     name: 'published',
-    type: 'bool',
+    type: env.NODE_ENV === 'test' ? 'integer' : 'bool',
     default: true,
   })
   published: boolean
 
   @CreateDateColumn({
     name: 'created_at',
-    type: 'timestamp',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
     nullable: false,
   })
   createdAt: Date
 
   @UpdateDateColumn({
     name: 'modified_at',
-    type: 'timestamp',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
     nullable: false,
   })
   modifiedAt: Date

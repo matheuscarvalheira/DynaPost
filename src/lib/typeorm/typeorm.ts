@@ -7,7 +7,7 @@ import { PostClassroom } from '@/entities/post-classroom.entity'
 import { Teacher } from '@/entities/teacher.entity'
 import { Classroom } from '@/entities/classroom.entity'
 
-export const appDataSource = new DataSource({
+export const appDataSource: DataSource = new DataSource({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: env.DATABASE_TYPE as any,
   host: env.DATABASE_HOST,
@@ -20,14 +20,3 @@ export const appDataSource = new DataSource({
   synchronize: env.NODE_ENV === 'development',
   logging: env.NODE_ENV === 'development',
 })
-
-appDataSource
-  .initialize()
-  .then(() => {
-    if (env.NODE_ENV === 'development')
-      console.log('Database with typeorm connected')
-  })
-  .catch((error) => {
-    if (env.NODE_ENV === 'development')
-      console.error('Error connecting to database with typeorm', error)
-  })
