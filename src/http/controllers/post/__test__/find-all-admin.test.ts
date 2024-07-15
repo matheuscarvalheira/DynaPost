@@ -55,7 +55,7 @@ describe('get admin route', () => {
     expect(response.body.length).toEqual(LIMIT)
   })
 
-  test('page 2 returns a list of 1 item', async () => {
+  test('page 2 returns a list of 4 items', async () => {
     const PAGE = 2
 
     const response = await request(app).get(`/posts/admin?page=${PAGE}`)
