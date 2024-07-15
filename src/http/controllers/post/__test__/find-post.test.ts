@@ -1,27 +1,45 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import request from 'supertest'
 import { app } from '@/app'
-import { PostRepository } from '@/repositories/typeorm/post.repository'
-import { mockData } from './testData'
+import { mockFindAllQuery } from './testData'
+import { appDataSource } from '@/lib/typeorm/typeorm'
 
-jest.mock('@/repositories/typeorm/post.repository')
+jest.mock('@/lib/typeorm/typeorm.ts', () => {
+  const { DataSource } = require('typeorm')
+  const { Post } = require('@/entities/post.entity')
+  const { Teacher } = require('@/entities/teacher.entity')
+  const { Classroom } = require('@/entities/classroom.entity')
+  const { PostClassroom } = require('@/entities/post-classroom.entity')
+  const { PostTeacher } = require('@/entities/post-teacher.entity')
 
-let mockFindAll: jest.SpyInstance
-
-describe('get one post', () => {
-  beforeEach(async () => {
-    mockFindAll = jest
-      .spyOn(PostRepository.prototype, 'findById')
-      .mockResolvedValue(mockData[0])
+  const mockDataSource = new DataSource({
+    type: 'sqlite',
+    database: ':memory:',
+    entities: [Post, Teacher, Classroom, PostClassroom, PostTeacher],
+    synchronize: true,
   })
 
-  afterEach(async () => {
-    mockFindAll.mockRestore()
+  return {
+    appDataSource: mockDataSource,
+  }
+})
+
+describe('get one post', () => {
+  beforeAll(async () => {
+    await appDataSource.initialize()
+    appDataSource.query(mockFindAllQuery)
+  })
+
+  afterAll(async () => {
+    await appDataSource.destroy()
   })
 
   test('base route with one id', async () => {
-    const response = await request(app).get(`/posts/${mockData[0].id}`)
+    const postId = '854a21e4-24e0-48c9-ad83-cac94ce5ea26'
+
+    const response = await request(app).get(`/posts/${postId}`)
     expect(response.status).toBe(200)
     expect(response.headers['content-type']).toMatch(/json/)
-    expect(response.body).toEqual(mockData[0])
+    expect(response.body.id).toEqual(postId)
   })
 })

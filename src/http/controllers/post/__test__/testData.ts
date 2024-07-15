@@ -15,6 +15,7 @@ export const mockFindAllQuery = `
   ('3b4e4eb3-b4fe-4db5-bf52-f32a97638f8b', 'Lorem Ipsum 13', 'Lorem ipsum dolor sit amet 13, consectetur adipiscing elit.', 1, '${new Date().toISOString()}', '${new Date().toISOString()}'),
   ('9bec6f35-4db7-4f32-afa4-566515ec2af6', 'Lorem Ipsum 14', 'Lorem ipsum dolor sit amet 14, consectetur adipiscing elit.', 0, '${new Date().toISOString()}', '${new Date().toISOString()}')
 `
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 export const mockData = [
   {

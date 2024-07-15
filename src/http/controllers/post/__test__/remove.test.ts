@@ -1,26 +1,49 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import request from 'supertest'
 import { app } from '@/app'
-import { PostRepository } from '@/repositories/typeorm/post.repository'
-import { mockData } from './testData'
+import { mockFindAllQuery } from './testData'
+import { appDataSource } from '@/lib/typeorm/typeorm'
 
-jest.mock('@/repositories/typeorm/post.repository')
+jest.mock('@/lib/typeorm/typeorm.ts', () => {
+  const { DataSource } = require('typeorm')
+  const { Post } = require('@/entities/post.entity')
+  const { Teacher } = require('@/entities/teacher.entity')
+  const { Classroom } = require('@/entities/classroom.entity')
+  const { PostClassroom } = require('@/entities/post-classroom.entity')
+  const { PostTeacher } = require('@/entities/post-teacher.entity')
 
-let mockDelete: jest.SpyInstance
-
-describe('remove post', () => {
-  beforeEach(() => {
-    mockDelete = jest
-      .spyOn(PostRepository.prototype, 'delete')
-      .mockResolvedValue()
+  const mockDataSource = new DataSource({
+    type: 'sqlite',
+    database: ':memory:',
+    entities: [Post, Teacher, Classroom, PostClassroom, PostTeacher],
+    synchronize: true,
   })
 
-  afterEach(() => {
-    mockDelete.mockRestore()
+  return {
+    appDataSource: mockDataSource,
+  }
+})
+
+describe('remove post', () => {
+  beforeAll(async () => {
+    await appDataSource.initialize()
+    appDataSource.query(mockFindAllQuery)
+  })
+
+  afterAll(async () => {
+    await appDataSource.destroy()
   })
 
   test('remove values from base', async () => {
-    const response = await request(app).delete(`/posts/${mockData[0].id}`)
+    const postId = '854a21e4-24e0-48c9-ad83-cac94ce5ea26'
+
+    const response = await request(app).delete(`/posts/${postId}`)
     expect(response.status).toBe(204)
     expect(response.body).toStrictEqual({})
+
+    const queryPost = await appDataSource.query(
+      `select * from post where id = '${postId}'`,
+    )
+    expect(queryPost.length).toBe(0)
   })
 })
