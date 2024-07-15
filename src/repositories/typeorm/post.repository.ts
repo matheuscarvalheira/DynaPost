@@ -19,6 +19,16 @@ export class PostRepository implements IPostRepository {
     return this.repository.find({
       skip: (page - 1) * limit,
       take: limit,
+      where: {
+        published: true,
+      },
+    })
+  }
+
+  async findAllAdmin(page: number, limit: number): Promise<IPost[]> {
+    return this.repository.find({
+      skip: (page - 1) * limit,
+      take: limit,
     })
   }
 

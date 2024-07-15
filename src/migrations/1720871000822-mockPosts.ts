@@ -9,7 +9,7 @@ export class MockPosts1720871000822 implements MigrationInterface {
         id: uuid(),
         title: `Post Title ${i}`,
         body: `This is the body of post ${i}.`,
-        published: true,
+        published: i % 2 === 0,
         createdAt: new Date(),
         modifiedAt: new Date(),
       })

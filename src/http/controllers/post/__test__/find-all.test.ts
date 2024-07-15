@@ -61,6 +61,6 @@ describe('base get route', () => {
     const response = await request(app).get(`/posts?page=${PAGE}`)
     expect(response.status).toBe(200)
     expect(response.headers['content-type']).toMatch(/json/)
-    expect(response.body.length).toEqual(4)
+    expect(response.body.length).toEqual(1)
   })
 })

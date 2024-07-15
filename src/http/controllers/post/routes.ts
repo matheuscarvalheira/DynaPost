@@ -1,4 +1,5 @@
 import { findAllPosts } from './find-all-posts'
+import { findAllAdmin } from './find-admin'
 import { findPost } from './find-post'
 import { create } from './create'
 import { update } from './update'
@@ -6,6 +7,7 @@ import { remove } from './remove'
 import { Application } from 'express'
 
 export async function postRoutes(app: Application) {
+  app.get('/posts/admin', findAllAdmin)
   app.get('/posts', findAllPosts)
   app.get('/posts/:id', findPost)
   app.post('/posts', create)
