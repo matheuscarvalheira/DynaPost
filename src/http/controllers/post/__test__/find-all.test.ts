@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import request from 'supertest'
 import { app } from '@/app'
-import { mockFindAllQuery } from './testData'
+import { postListQuery } from './testData'
 import { appDataSource } from '@/lib/typeorm/typeorm'
 
 jest.mock('@/lib/typeorm/typeorm.ts', () => {
@@ -27,7 +27,7 @@ jest.mock('@/lib/typeorm/typeorm.ts', () => {
 describe('base get route', () => {
   beforeAll(async () => {
     await appDataSource.initialize()
-    appDataSource.query(mockFindAllQuery)
+    appDataSource.query(postListQuery)
   })
 
   afterAll(async () => {

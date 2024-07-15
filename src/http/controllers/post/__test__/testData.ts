@@ -1,4 +1,4 @@
-export const mockFindAllQuery = `
+export const postListQuery = `
   INSERT INTO post (id, title, body, published, created_at, modified_at) VALUES
   ('854a21e4-24e0-48c9-ad83-cac94ce5ea26', 'Lorem Ipsum 1', 'Lorem ipsum dolor sit amet 1, consectetur adipiscing elit.', 1, '${new Date().toISOString()}', '${new Date().toISOString()}'),
   ('244dadb6-4a96-4a47-9b6e-290839e1e155', 'Lorem Ipsum 2', 'Lorem ipsum dolor sit amet 2, consectetur adipiscing elit.', 0, '${new Date().toISOString()}', '${new Date().toISOString()}'),
