@@ -61,8 +61,6 @@ describe('update post', () => {
       id: postId,
       title: 'Post 1',
       body: 'Conteudo da postagem',
-      teacher_id: teacherId,
-      classroom_id: classroomId,
     }
 
     const response = await request(app)
