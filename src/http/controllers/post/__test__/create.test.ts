@@ -10,15 +10,11 @@ jest.mock('@/lib/typeorm/typeorm.ts', () => {
   const { Classroom } = require('@/entities/classroom.entity')
   const { PostClassroom } = require('@/entities/post-classroom.entity')
   const { PostTeacher } = require('@/entities/post-teacher.entity')
-  const {
-    MockPostWithTeachersAndClassroom1720873181668,
-  } = require('@/migrations/1720873181668-mockPostWithTeachersAndClassroom')
 
   const mockDataSource = new DataSource({
     type: 'sqlite',
     database: ':memory:',
     entities: [Post, Teacher, Classroom, PostClassroom, PostTeacher],
-    migrations: [MockPostWithTeachersAndClassroom1720873181668],
     synchronize: true,
   })
 
