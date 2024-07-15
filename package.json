@@ -12,7 +12,7 @@
     "typeorm:migrate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/lib/typeorm/typeorm.ts",
     "typeorm:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d src/lib/typeorm/typeorm.ts",
     "test": "NODE_ENV=test jest --coverage=false",
-    "test:coverage": "NODE_ENV=testjest --coverage=true"
+    "test:coverage": "NODE_ENV=test jest --coverage=true"
   },
   "keywords": [],
   "author": "",
