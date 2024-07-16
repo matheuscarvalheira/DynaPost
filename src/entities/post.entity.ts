@@ -1,5 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { IPost } from './models/post.interface'
+import { PostTeacher } from './post-teacher.entity'
+import { PostClassroom } from './post-classroom.entity'
+import { env } from '@/env'
 
 @Entity('post')
 export class Post implements IPost {
@@ -11,45 +21,41 @@ export class Post implements IPost {
   @Column({
     name: 'title',
     type: 'varchar',
+    nullable: false,
   })
   title: string
 
   @Column({
-    name: 'content',
+    name: 'body',
     type: 'text',
+    nullable: false,
   })
-  content: string
+  body: string
 
   @Column({
-    name: 'author',
-    type: 'varchar',
+    name: 'published',
+    type: env.NODE_ENV === 'test' ? 'integer' : 'bool',
+    default: true,
   })
-  author: string
+  published: boolean
 
-  @Column({
-    name: 'team',
-    type: 'varchar',
-  })
-  team: string
-
-  @Column({
-    name: 'creation_date',
-    type: 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+  @CreateDateColumn({
+    name: 'created_at',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
+    nullable: false,
   })
   createdAt: Date
 
-  constructor(
-    title: string,
-    content: string,
-    author: string,
-    team: string,
-    createdAt: Date,
-  ) {
-    this.title = title
-    this.content = content
-    this.author = author
-    this.team = team
-    this.createdAt = createdAt
-  }
+  @UpdateDateColumn({
+    name: 'modified_at',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
+    nullable: false,
+  })
+  modifiedAt: Date
+
+  @OneToMany(() => PostTeacher, (postTeacher) => postTeacher.post)
+  postTeachers: PostTeacher[]
+
+  @OneToMany(() => PostClassroom, (postClassroom) => postClassroom.post)
+  postClassrooms: PostClassroom[]
 }

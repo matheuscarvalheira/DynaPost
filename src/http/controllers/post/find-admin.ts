@@ -1,8 +1,8 @@
-import { makeFindAllPostUseCase } from '@/use-cases/post/factory/make-find-all-post-use-case'
+import { makeFindAllAdminUseCase } from '@/use-cases/post/factory/make-find-all-admin-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
-export async function findAllPosts(req: Request, res: Response) {
+export async function findAllAdmin(req: Request, res: Response) {
   const registerQuerySchema = z.object({
     page: z.coerce.number().default(1),
     limit: z.coerce.number().default(10),
@@ -10,9 +10,9 @@ export async function findAllPosts(req: Request, res: Response) {
 
   const { page, limit } = registerQuerySchema.parse(req.query)
 
-  const findAllPostsUseCase = makeFindAllPostUseCase()
+  const findAllAdminUseCase = makeFindAllAdminUseCase()
 
-  const posts = await findAllPostsUseCase.handler(page, limit)
+  const posts = await findAllAdminUseCase.handler(page, limit)
 
   return res.status(200).json(posts)
 }

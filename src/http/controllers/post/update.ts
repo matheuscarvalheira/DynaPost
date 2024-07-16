@@ -1,4 +1,4 @@
-import { makeUpdatePostUseCase } from '@/use-cases/factory/make-update-post-use-case'
+import { makeUpdatePostUseCase } from '@/use-cases/post/factory/make-update-post-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
@@ -11,23 +11,19 @@ export async function update(request: Request, response: Response) {
 
   const registerBodySchema = z.object({
     title: z.string(),
-    content: z.string(),
-    author: z.string(),
-    team: z.string(),
+    body: z.string(),
+    published: z.boolean().optional(),
   })
 
-  const { title, content, author, team } = registerBodySchema.parse(
-    request.body,
-  )
+  const { title, body, published } = registerBodySchema.parse(request.body)
 
   const updatePostUseCase = makeUpdatePostUseCase()
 
   const post = await updatePostUseCase.handler({
     id,
     title,
-    content,
-    author,
-    team,
+    body,
+    published,
   })
 
   return response.status(200).json(post)
