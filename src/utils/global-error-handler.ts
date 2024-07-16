@@ -14,13 +14,10 @@ export const errorHandlerMap: ErrorHandlerMap = {
   ZodError: (error, _, res) => {
     return res.status(400).json({
       message: 'Validation error',
-      ...(error instanceof ZodError && { error: error.format() }),
+      ...(error instanceof ZodError && { error: error.errors }),
     })
   },
   ResourceNotFoundError: (error, _, res) => {
-    return res.status(404).json({ message: error.message })
-  },
-  InvalidCredentialsError: (error, __, res) => {
     return res.status(404).json({ message: error.message })
   },
   NotFoundError: (error, _, res)=> {
