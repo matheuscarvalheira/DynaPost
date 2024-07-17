@@ -19,6 +19,9 @@ export const errorHandlerMap: ErrorHandlerMap = {
   NotFoundError: (error, _, res) => {
     return res.status(404).json({ message: error.message })
   },
+  QueryFailedError: (error, _, res) => {
+    return res.status(400).json({ message: error.message })
+  },
 }
 
 export const globalErrorHandler = (
