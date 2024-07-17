@@ -1,9 +1,11 @@
-import { ClassroomRepository } from "@/repositories/typeorm/classroom.repository";
-import { FindAllClassroomsUseCase } from "../find-all-classroom";
+import { ClassroomRepository } from '@/repositories/typeorm/classroom.repository'
+import { FindAllClassroomsUseCase } from '../find-all-classroom'
 
 export function makeFindAllClassroomUseCase() {
-  const classroomRepository = new ClassroomRepository();
-  const findAllClassroomUseCase = new FindAllClassroomsUseCase(classroomRepository);
+  const classroomRepository = new ClassroomRepository()
+  const findAllClassroomUseCase = new FindAllClassroomsUseCase(
+    classroomRepository,
+  )
 
-  return findAllClassroomUseCase;
+  return findAllClassroomUseCase
 }

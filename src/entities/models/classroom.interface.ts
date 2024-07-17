@@ -1,6 +1,6 @@
 export interface IClassroom {
-  id?: string;
-  name: string;
-  createdAt?: Date;
-  modifiedAt?: Date;
+  id?: string
+  name: string
+  createdAt?: Date
+  modifiedAt?: Date
 }

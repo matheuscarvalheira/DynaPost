@@ -1,6 +1,6 @@
 import { IPost } from '@/entities/models/post.interface'
 import { IPostRepository } from '../post.repository.interface'
-import { EntityManager, Repository } from 'typeorm'
+import { EntityManager, Like, Repository } from 'typeorm'
 import { Post } from '@/entities/post.entity'
 import { appDataSource } from '@/lib/typeorm/typeorm'
 
@@ -29,6 +29,12 @@ export class PostRepository implements IPostRepository {
     return this.repository.find({
       skip: (page - 1) * limit,
       take: limit,
+    })
+  }
+
+  async search(query: string): Promise<IPost[] | null> {
+    return this.repository.find({
+      where: [{ title: Like(`%${query}%`) }, { body: Like(`%${query}%`) }],
     })
   }
 

@@ -14,9 +14,7 @@ export async function update(request: Request, response: Response) {
     active: z.boolean(),
   })
 
-  const { name, active } = registerBodySchema.parse(
-    request.body,
-  )
+  const { name, active } = registerBodySchema.parse(request.body)
 
   const updateStudentUseCase = makeUpdateStudentUseCase()
 

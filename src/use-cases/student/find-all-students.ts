@@ -1,4 +1,4 @@
-import { IStudentRepository } from "@/repositories/student.repository.interface";
+import { IStudentRepository } from '@/repositories/student.repository.interface'
 
 export class FindAllStudentsUseCase {
   constructor(private StudentRepository: IStudentRepository) {}
