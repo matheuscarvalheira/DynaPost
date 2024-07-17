@@ -1,4 +1,4 @@
-import { IStudent } from "@/entities/models/student.interface"
+import { IStudent } from '@/entities/models/student.interface'
 
 export interface IStudentRepository {
   findAll(page: number, limit: number): Promise<IStudent[]>

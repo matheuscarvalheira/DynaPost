@@ -1,5 +1,5 @@
-import { IStudent } from "@/entities/models/student.interface";
-import { IStudentRepository } from "@/repositories/student.repository.interface";
+import { IStudent } from '@/entities/models/student.interface'
+import { IStudentRepository } from '@/repositories/student.repository.interface'
 
 export class UpdateStudentUseCase {
   constructor(private StudentRepository: IStudentRepository) {}

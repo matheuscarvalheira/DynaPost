@@ -8,9 +8,7 @@ export async function create(request: Request, response: Response) {
     active: z.boolean(),
   })
 
-  const { name, active } = registerBodySchema.parse(
-    request.body,
-  )
+  const { name, active } = registerBodySchema.parse(request.body)
 
   const createStudentUseCase = makeCreateStudentUseCase()
 
