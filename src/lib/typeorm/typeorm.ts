@@ -6,6 +6,9 @@ import { PostClassroom } from '@/entities/post-classroom.entity'
 import { Teacher } from '@/entities/teacher.entity'
 import { Classroom } from '@/entities/classroom.entity'
 import { MockPosts1720871000822 } from '@/migrations/1720871000822-mockPosts'
+import { Student } from '@/entities/student.entity'
+import { ClassroomStudent } from '@/entities/classroom-student.entity'
+import { ClassroomTeacher } from '@/entities/classroom-teacher.entity'
 
 export const appDataSource: DataSource = new DataSource({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,7 +18,16 @@ export const appDataSource: DataSource = new DataSource({
   username: env.DATABASE_USER,
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_NAME,
-  entities: [Post, Teacher, Classroom, PostClassroom, PostTeacher],
+  entities: [
+    Post,
+    Teacher,
+    Classroom,
+    Student,
+    PostClassroom,
+    PostTeacher,
+    ClassroomStudent,
+    ClassroomTeacher,
+  ],
   migrations: [MockPosts1720871000822],
   synchronize: env.NODE_ENV === 'development',
   logging: env.NODE_ENV === 'development',

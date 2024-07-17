@@ -1,7 +1,15 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { ITeacher } from './models/teacher.interface'
 import { PostTeacher } from './post-teacher.entity'
 import { env } from '@/env'
+import { ClassroomTeacher } from './classroom-teacher.entity'
 
 @Entity({
   name: 'teacher',
@@ -24,20 +32,23 @@ export class Teacher implements ITeacher {
   })
   active: boolean
 
-  @Column({
+  @CreateDateColumn({
     name: 'created_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   createdAt: Date
 
-  @Column({
+  @UpdateDateColumn({
     name: 'modified_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   modifiedAt: Date
 
   @OneToMany(() => PostTeacher, (postTeacher) => postTeacher.teacher)
   posts: PostTeacher[]
+
+  @OneToMany(() => ClassroomTeacher, (classroom) => classroom.teacher)
+  teacherClassroom: ClassroomTeacher
 }
