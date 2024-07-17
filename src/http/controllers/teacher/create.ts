@@ -1,4 +1,4 @@
-import { makeCreateTeacherUseCase } from '@/use-cases/factory/make-create-teacher-use-case'
+import { makeCreateTeacherUseCase } from '@/use-cases/teacher/factory/make-create-teacher-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 

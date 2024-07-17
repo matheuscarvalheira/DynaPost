@@ -1,4 +1,4 @@
-import { makeDeleteTeacherUseCase } from '@/use-cases/factory/make-delete-teacher-use-case'
+import { makeDeleteTeacherUseCase } from '@/use-cases/teacher/factory/make-delete-teacher-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 

@@ -1,4 +1,4 @@
-import { makeFindAllTeachersUseCase } from '@/use-cases/factory/make-find-all-teacher-use-case'
+import { makeFindAllTeachersUseCase } from '@/use-cases/teacher/factory/make-find-all-teacher-use-case'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
