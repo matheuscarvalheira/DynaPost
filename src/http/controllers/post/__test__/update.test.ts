@@ -31,10 +31,10 @@ describe('update post', () => {
   beforeEach(async () => {
     await appDataSource.initialize()
     await appDataSource.query(
-      `INSERT INTO teacher (id) VALUES ('${teacherId}')`,
+      `INSERT INTO teacher (id, name, active) VALUES ('${teacherId}', 'Fulano', 1)`,
     )
     await appDataSource.query(
-      `INSERT INTO classroom (id) VALUES ('${classroomId}')`,
+      `INSERT INTO classroom (id, name) VALUES ('${classroomId}', 'Aula de typescript')`,
     )
     await appDataSource.query(
       `INSERT INTO post (id, title, body, published, created_at, modified_at) VALUES
