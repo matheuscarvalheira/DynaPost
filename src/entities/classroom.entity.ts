@@ -1,6 +1,7 @@
 import { Entity, OneToMany, PrimaryGeneratedColumn, Column } from 'typeorm'
 import { PostClassroom } from './post-classroom.entity'
 import { IClassroom } from './models/classroom.interface'
+import { env } from '@/env'
 
 @Entity({ name: 'classroom' })
 export class Classroom implements IClassroom {
@@ -18,14 +19,14 @@ export class Classroom implements IClassroom {
 
   @Column({
     name: 'created_at',
-    type: 'timestamp without time zone',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date
 
   @Column({
     name: 'modified_at',
-    type: 'timestamp without time zone',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
     default: () => 'CURRENT_TIMESTAMP',
   })
   modifiedAt: Date

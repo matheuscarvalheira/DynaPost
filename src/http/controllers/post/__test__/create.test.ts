@@ -27,10 +27,10 @@ describe('post route tests', () => {
   beforeEach(async () => {
     await appDataSource.initialize()
     appDataSource.query(
-      `INSERT INTO teacher (id) VALUES ('1f69a6f0-33b1-4e4d-992d-bf92f0f3069f')`,
+      `INSERT INTO teacher (id, name, active) VALUES ('1f69a6f0-33b1-4e4d-992d-bf92f0f3069f', 'Professor 1', 1)`,
     )
     appDataSource.query(
-      `INSERT INTO classroom (id) VALUES ('b1871c08-3bf3-48f7-bc24-49e25cfe1990')`,
+      `INSERT INTO classroom (id, name) VALUES ('b1871c08-3bf3-48f7-bc24-49e25cfe1990', 'Professor 2')`,
     )
   })
 
