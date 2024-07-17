@@ -1,5 +1,5 @@
 import { env } from '@/env'
-import { Response, Request } from 'express'
+import { Response, Request, NextFunction } from 'express'
 import { ZodError } from 'zod'
 
 interface ErrorHandlerMap {
@@ -21,7 +21,13 @@ export const errorHandlerMap: ErrorHandlerMap = {
   },
 }
 
-export const globalErrorHandler = (error: Error, _: Request, res: Response) => {
+export const globalErrorHandler = (
+  error: Error,
+  _: Request,
+  res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  __: NextFunction,
+) => {
   if (env.NODE_ENV === 'development') {
     console.error(error)
   }

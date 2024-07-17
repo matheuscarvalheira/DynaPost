@@ -4,11 +4,12 @@ import { findStudent } from './find-student'
 import { create } from './create'
 import { update } from './update'
 import { remove } from './remove'
+import { asyncWrapper } from '@/utils/async-wrapper'
 
 export async function studentRoutes(app: Application) {
-  app.get('/students', findAllStudents)
-  app.get('/students/:id', findStudent)
-  app.post('/students', create)
-  app.put('/students/:id', update)
-  app.delete('/students/:id', remove)
+  app.get('/students', asyncWrapper(findAllStudents))
+  app.get('/students/:id', asyncWrapper(findStudent))
+  app.post('/students', asyncWrapper(create))
+  app.put('/students/:id', asyncWrapper(update))
+  app.delete('/students/:id', asyncWrapper(remove))
 }
