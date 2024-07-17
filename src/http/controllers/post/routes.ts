@@ -6,14 +6,13 @@ import { update } from './update'
 import { remove } from './remove'
 import { search } from './search'
 import { Application } from 'express'
-import { asyncWrapper } from '@/utils/async-wrapper'
 
 export async function postRoutes(app: Application) {
-  app.get('/posts/admin', asyncWrapper(findAllAdmin))
-  app.get('/posts/search/', asyncWrapper(search))
-  app.get('/posts', asyncWrapper(findAllPosts))
-  app.get('/posts/:id', asyncWrapper(findPost))
-  app.post('/posts', asyncWrapper(create))
-  app.put('/posts/:id', asyncWrapper(update))
-  app.delete('/posts/:id', asyncWrapper(remove))
+  app.get('/posts/admin', findAllAdmin)
+  app.get('/posts/search/', search)
+  app.get('/posts', findAllPosts)
+  app.get('/posts/:id', findPost)
+  app.post('/posts', create)
+  app.put('/posts/:id', update)
+  app.delete('/posts/:id', remove)
 }
