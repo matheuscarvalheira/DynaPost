@@ -3,7 +3,7 @@ name: Deploy to Render
 on:
   push:
     branches:
-      - main  # ou a branch que você deseja monitorar para deploy
+      - main
 
 jobs:
   deploy:
@@ -16,13 +16,13 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20'  # ou a versão do Node.js que você está usando
+        node-version: '20'
 
     - name: Install dependencies
       run: npm install
 
     - name: Build project
-      run: npm run build  # ajuste conforme necessário
+      run: npm run build
 
     - name: Deploy PostgreSQL to Render
       env:
@@ -30,10 +30,10 @@ jobs:
         RENDER_SERVICE_ID_DB: ${{ secrets.RENDER_SERVICE_ID_DB }}
       run: |
         curl -X POST \
-        -H 'Authorization: Bearer $RENDER_API_KEY' \
-        -H 'Content-Type: application/json' \
-        -d '{"serviceId": "$RENDER_SERVICE_ID_DB"}' \
-        https://api.render.com/v1/deploys
+          -H 'Authorization: Bearer $RENDER_API_KEY' \
+          -H 'Content-Type: application/json' \
+          -d '{"serviceId": "'"$RENDER_SERVICE_ID_DB"'"}' \
+          https://api.render.com/v1/deploys
 
     - name: Deploy Node.js App to Render
       env:
@@ -41,7 +41,7 @@ jobs:
         RENDER_SERVICE_ID_APP: ${{ secrets.RENDER_SERVICE_ID_APP }}
       run: |
         curl -X POST \
-        -H 'Authorization: Bearer $RENDER_API_KEY' \
-        -H 'Content-Type: application/json' \
-        -d '{"serviceId": "$RENDER_SERVICE_ID_APP"}' \
-        https://api.render.com/v1/deploys
+          -H 'Authorization: Bearer $RENDER_API_KEY' \
+          -H 'Content-Type: application/json' \
+          -d '{"serviceId": "'"$RENDER_SERVICE_ID_APP"'"}' \
+          https://api.render.com/v1/deploys
