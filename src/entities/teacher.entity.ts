@@ -27,6 +27,7 @@ export class Teacher implements ITeacher {
   @Column({
     name: 'active',
     type: env.NODE_ENV === 'test' ? 'integer' : 'boolean',
+    default: true,
   })
   active: boolean
 
