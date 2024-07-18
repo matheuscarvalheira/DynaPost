@@ -2,15 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToMany,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
 import { IStudent } from './models/student.interface'
 import { env } from '@/env'
-import { Classroom } from './classroom.entity'
-import { ClassroomStudent } from './classroom-student.entity'
 
 @Entity('student')
 export class Student implements IStudent {
@@ -28,6 +24,7 @@ export class Student implements IStudent {
   @Column({
     name: 'active',
     type: env.NODE_ENV === 'test' ? 'integer' : 'boolean',
+    default: true,
   })
   active: boolean
 
@@ -44,13 +41,4 @@ export class Student implements IStudent {
     nullable: false,
   })
   modifiedAt: Date
-
-  @ManyToMany(() => Classroom, (classroom) => classroom.students)
-  classrooms: Classroom[]
-
-  @OneToMany(
-    () => ClassroomStudent,
-    (classroomStudent) => classroomStudent.student,
-  )
-  classroomStudents: ClassroomStudent[]
 }

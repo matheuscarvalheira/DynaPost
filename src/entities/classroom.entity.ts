@@ -5,18 +5,12 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
-  OneToOne,
 } from 'typeorm'
 import { PostClassroom } from './post-classroom.entity'
 import { IClassroom } from './models/classroom.interface'
 import { env } from '@/env'
-import { ClassroomTeacher } from './classroom-teacher.entity'
-import { Student } from './student.entity'
-import { ClassroomStudent } from './classroom-student.entity'
 
-@Entity({ name: 'classroom' })
+@Entity('classroom')
 export class Classroom implements IClassroom {
   @PrimaryGeneratedColumn('uuid')
   id?: string | undefined
@@ -43,29 +37,4 @@ export class Classroom implements IClassroom {
 
   @OneToMany(() => PostClassroom, (postClassroom) => postClassroom.classroom)
   posts: PostClassroom[]
-
-  @OneToOne(() => ClassroomTeacher, (classroom) => classroom.classroom, {
-    onDelete: 'CASCADE',
-  })
-  classroomTeacher: ClassroomTeacher
-
-  @OneToMany(
-    () => ClassroomStudent,
-    (classroomStudent) => classroomStudent.classroom,
-  )
-  classroomStudents: ClassroomStudent[]
-
-  @ManyToMany(() => Student, (student) => student.classrooms)
-  @JoinTable({
-    name: 'classroom_student',
-    joinColumn: {
-      name: 'classroom_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'student_id',
-      referencedColumnName: 'id',
-    },
-  })
-  students: Student[]
 }

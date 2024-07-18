@@ -1,4 +1,4 @@
-import { IPostTeacher } from '@/entities/models/postTeacher.interface'
+import { IPostTeacher } from '@/entities/models/post-teacher.interface'
 import { IPostTeacherRepository } from '@/repositories/post-teacher.repository.interface'
 
 export class CreatePostTeacherUseCase {

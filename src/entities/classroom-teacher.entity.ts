@@ -19,14 +19,14 @@ export class ClassroomTeacher implements IClassroomTeacher {
   @PrimaryColumn('uuid')
   teacher_id: string
 
-  @ManyToOne(() => Teacher, (teacher) => teacher.teacherClassroom, {
+  @ManyToOne(() => Teacher, (teacher) => teacher.classroomTeachers, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
   @JoinColumn({ name: 'teacher_id' })
-  teacher: Teacher
+  classroomTeacher: Teacher
 
-  @OneToOne(() => Classroom, (classroom) => classroom.classroomTeacher, {
+  @OneToOne(() => Classroom, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })

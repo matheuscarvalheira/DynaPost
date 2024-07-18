@@ -1,4 +1,4 @@
-import { IPostClassroom } from '@/entities/models/postClassroom.interface'
+import { IPostClassroom } from '@/entities/models/post-classroom.interface'
 import { IPostClassroomRepository } from '@/repositories/post-classroom.repository.interface'
 
 export class CreatePostClassroomUseCase {

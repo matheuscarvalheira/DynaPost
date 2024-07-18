@@ -11,9 +11,7 @@ import { PostTeacher } from './post-teacher.entity'
 import { env } from '@/env'
 import { ClassroomTeacher } from './classroom-teacher.entity'
 
-@Entity({
-  name: 'teacher',
-})
+@Entity('teacher')
 export class Teacher implements ITeacher {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
@@ -49,6 +47,9 @@ export class Teacher implements ITeacher {
   @OneToMany(() => PostTeacher, (postTeacher) => postTeacher.teacher)
   posts: PostTeacher[]
 
-  @OneToMany(() => ClassroomTeacher, (classroom) => classroom.teacher)
-  teacherClassroom: ClassroomTeacher
+  @OneToMany(
+    () => ClassroomTeacher,
+    (classroomTeacher) => classroomTeacher.classroomTeacher,
+  )
+  classroomTeachers: ClassroomTeacher[]
 }
