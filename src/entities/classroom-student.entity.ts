@@ -12,7 +12,7 @@ export class ClassroomStudent implements IClassroomStudent {
   @PrimaryColumn('uuid')
   student_id: string
 
-  @ManyToOne(() => Classroom, (classroom) => classroom.students, {
+  @ManyToOne(() => Classroom, (classroom) => classroom.classroomStudents, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })

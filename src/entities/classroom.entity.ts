@@ -43,5 +43,5 @@ export class Classroom implements IClassroom {
     () => ClassroomStudent,
     (classroomStudent) => classroomStudent.classroom,
   )
-  students: ClassroomStudent[]
+  classroomStudents: ClassroomStudent[]
 }
