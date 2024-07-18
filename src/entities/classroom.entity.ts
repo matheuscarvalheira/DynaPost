@@ -9,6 +9,7 @@ import {
 import { PostClassroom } from './post-classroom.entity'
 import { IClassroom } from './models/classroom.interface'
 import { env } from '@/env'
+import { ClassroomStudent } from './classroom-student.entity'
 
 @Entity('classroom')
 export class Classroom implements IClassroom {
@@ -37,4 +38,10 @@ export class Classroom implements IClassroom {
 
   @OneToMany(() => PostClassroom, (postClassroom) => postClassroom.classroom)
   posts: PostClassroom[]
+
+  @OneToMany(
+    () => ClassroomStudent,
+    (classroomStudent) => classroomStudent.classroom,
+  )
+  students: ClassroomStudent[]
 }

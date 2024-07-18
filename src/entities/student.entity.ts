@@ -2,11 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
 import { IStudent } from './models/student.interface'
 import { env } from '@/env'
+import { ClassroomStudent } from './classroom-student.entity'
 
 @Entity('student')
 export class Student implements IStudent {
@@ -41,4 +43,10 @@ export class Student implements IStudent {
     nullable: false,
   })
   modifiedAt: Date
+
+  @OneToMany(
+    () => ClassroomStudent,
+    (classroomStudent) => classroomStudent.student,
+  )
+  classroomStudent: ClassroomStudent[]
 }

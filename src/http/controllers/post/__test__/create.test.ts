@@ -7,6 +7,7 @@ jest.mock('@/lib/typeorm/typeorm.ts', () => {
   const { DataSource } = require('typeorm')
   const { Post } = require('@/entities/post.entity')
   const { Teacher } = require('@/entities/teacher.entity')
+  const { Student } = require('@/entities/student.entity')
   const { Classroom } = require('@/entities/classroom.entity')
   const { PostClassroom } = require('@/entities/post-classroom.entity')
   const { PostTeacher } = require('@/entities/post-teacher.entity')
@@ -20,6 +21,7 @@ jest.mock('@/lib/typeorm/typeorm.ts', () => {
       Post,
       Teacher,
       Classroom,
+      Student,
       PostClassroom,
       PostTeacher,
       ClassroomStudent,
