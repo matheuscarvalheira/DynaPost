@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "build": "tsup src --out-dir build",
+    "build": "npx tsup src --out-dir build",
     "dbup": "docker compose -f db/docker-compose.yml up -d",
     "dbdown": "docker compose -f db/docker-compose.yml down",
     "typeorm:migrate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/lib/typeorm/typeorm.ts",
