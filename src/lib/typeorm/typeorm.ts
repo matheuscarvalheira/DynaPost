@@ -12,6 +12,8 @@ import { Teachers1721343556020 } from '@/migrations/1721343556020-teachers'
 import { Students1721344741826 } from '@/migrations/1721344741826-students'
 import { Classrooms1721345439928 } from '@/migrations/1721345439928-classrooms'
 import { Posts1721346255409 } from '@/migrations/1721346255409-posts'
+import { ClassroomTeacher1721687608034 } from '@/migrations/1721687608034-classroomTeacher'
+import { ClassroomStudent1721688305255 } from '@/migrations/1721688305255-classroomStudent'
 
 export const appDataSource: DataSource = new DataSource({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,6 +38,8 @@ export const appDataSource: DataSource = new DataSource({
     Students1721344741826,
     Classrooms1721345439928,
     Posts1721346255409,
+    ClassroomTeacher1721687608034,
+    ClassroomStudent1721688305255,
   ],
   synchronize: env.NODE_ENV === 'development',
   logging: env.NODE_ENV === 'development',
