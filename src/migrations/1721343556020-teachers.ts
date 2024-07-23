@@ -21,6 +21,11 @@ export const teacherData = [
     name: 'Michael Brown',
     active: true,
   },
+  {
+    id: 'd171b101-56e6-4d54-8835-54496787c7e2',
+    name: 'João Paulo',
+    active: true,
+  },
 ]
 
 export class Teachers1721343556020 implements MigrationInterface {

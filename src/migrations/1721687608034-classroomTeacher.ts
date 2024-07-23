@@ -7,6 +7,7 @@ const classroomTeacherData = [
   { teacher_id: teacherData[1].id, classroom_id: classroomsData[2].id },
   { teacher_id: teacherData[2].id, classroom_id: classroomsData[4].id },
   { teacher_id: teacherData[3].id, classroom_id: classroomsData[5].id },
+  { teacher_id: teacherData[4].id, classroom_id: classroomsData[1].id },
 ]
 
 export class ClassroomTeacher1721687608034 implements MigrationInterface {
