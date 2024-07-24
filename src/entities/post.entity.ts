@@ -41,14 +41,14 @@ export class Post implements IPost {
 
   @CreateDateColumn({
     name: 'created_at',
-    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
     nullable: false,
   })
   createdAt: Date
 
   @UpdateDateColumn({
     name: 'modified_at',
-    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
+    type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
     nullable: false,
   })
   modifiedAt: Date

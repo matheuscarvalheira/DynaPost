@@ -1,11 +1,17 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { ITeacher } from './models/teacher.interface'
 import { PostTeacher } from './post-teacher.entity'
 import { env } from '@/env'
+import { ClassroomTeacher } from './classroom-teacher.entity'
 
-@Entity({
-  name: 'teacher',
-})
+@Entity('teacher')
 export class Teacher implements ITeacher {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
@@ -21,23 +27,30 @@ export class Teacher implements ITeacher {
   @Column({
     name: 'active',
     type: env.NODE_ENV === 'test' ? 'integer' : 'boolean',
+    default: true,
   })
   active: boolean
 
-  @Column({
+  @CreateDateColumn({
     name: 'created_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   createdAt: Date
 
-  @Column({
+  @UpdateDateColumn({
     name: 'modified_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   modifiedAt: Date
 
   @OneToMany(() => PostTeacher, (postTeacher) => postTeacher.teacher)
   posts: PostTeacher[]
+
+  @OneToMany(
+    () => ClassroomTeacher,
+    (classroomTeacher) => classroomTeacher.classroomTeacher,
+  )
+  classroomTeachers: ClassroomTeacher[]
 }

@@ -2,7 +2,7 @@ import { EntityManager, Repository } from 'typeorm'
 import { IPostTeacherRepository } from '../post-teacher.repository.interface'
 import { PostTeacher } from '@/entities/post-teacher.entity'
 import { appDataSource } from '@/lib/typeorm/typeorm'
-import { IPostTeacher } from '@/entities/models/postTeacher.interface'
+import { IPostTeacher } from '@/entities/models/post-teacher.interface'
 
 export class PostTeacherRepository implements IPostTeacherRepository {
   private repository: Repository<PostTeacher>
