@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres
+    container_name: dynapost_grupo1
+    environment:
+      POSTGRES_PASSWORD: "grupotech1!"
+      POSTGRES_DB: "dynapost"
+    ports:
+      - "5432:5432"
