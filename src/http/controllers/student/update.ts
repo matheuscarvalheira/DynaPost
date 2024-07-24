@@ -11,7 +11,7 @@ export async function update(request: Request, response: Response) {
 
   const registerBodySchema = z.object({
     name: z.string(),
-    active: z.boolean(),
+    active: z.boolean().optional(),
   })
 
   const { name, active } = registerBodySchema.parse(request.body)

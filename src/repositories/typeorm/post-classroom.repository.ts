@@ -1,8 +1,8 @@
-import { IPostClassroom } from '@/entities/models/postClassroom.interface'
 import { PostClassroom } from '@/entities/post-classroom.entity'
 import { appDataSource } from '@/lib/typeorm/typeorm'
 import { EntityManager, Repository } from 'typeorm'
 import { IPostClassroomRepository } from '../post-classroom.repository.interface'
+import { IPostClassroom } from '@/entities/models/post-classroom.interface'
 
 export class PostClassroomRepository implements IPostClassroomRepository {
   private repository: Repository<PostClassroom>

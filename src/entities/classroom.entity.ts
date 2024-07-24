@@ -1,15 +1,20 @@
-import { Entity, OneToMany, PrimaryGeneratedColumn, Column } from 'typeorm'
+import {
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { PostClassroom } from './post-classroom.entity'
 import { IClassroom } from './models/classroom.interface'
 import { env } from '@/env'
+import { ClassroomStudent } from './classroom-student.entity'
 
-@Entity({ name: 'classroom' })
+@Entity('classroom')
 export class Classroom implements IClassroom {
   @PrimaryGeneratedColumn('uuid')
   id?: string | undefined
-
-  @OneToMany(() => PostClassroom, (postClassroom) => postClassroom.classroom)
-  posts: PostClassroom[]
 
   @Column({
     name: 'name',
@@ -17,23 +22,26 @@ export class Classroom implements IClassroom {
   })
   name: string
 
-  @Column({
+  @CreateDateColumn({
     name: 'created_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   createdAt: Date
 
-  @Column({
+  @UpdateDateColumn({
     name: 'modified_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   modifiedAt: Date
 
-  constructor(name: string, createdAt: Date, modifiedAt: Date) {
-    this.name = name
-    this.createdAt = createdAt
-    this.modifiedAt = modifiedAt
-  }
+  @OneToMany(() => PostClassroom, (postClassroom) => postClassroom.classroom)
+  posts: PostClassroom[]
+
+  @OneToMany(
+    () => ClassroomStudent,
+    (classroomStudent) => classroomStudent.classroom,
+  )
+  classroomStudents: ClassroomStudent[]
 }

@@ -1,8 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { IStudent } from './models/student.interface'
 import { env } from '@/env'
+import { ClassroomStudent } from './classroom-student.entity'
 
-@Entity('students')
+@Entity('student')
 export class Student implements IStudent {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
@@ -18,20 +26,27 @@ export class Student implements IStudent {
   @Column({
     name: 'active',
     type: env.NODE_ENV === 'test' ? 'integer' : 'boolean',
+    default: true,
   })
   active: boolean
 
-  @Column({
+  @CreateDateColumn({
     name: 'created_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   createdAt: Date
 
-  @Column({
+  @UpdateDateColumn({
     name: 'modified_at',
     type: env.NODE_ENV === 'test' ? 'datetime' : 'timestamp without time zone',
-    default: () => 'CURRENT_TIMESTAMP',
+    nullable: false,
   })
   modifiedAt: Date
+
+  @OneToMany(
+    () => ClassroomStudent,
+    (classroomStudent) => classroomStudent.student,
+  )
+  classroomStudent: ClassroomStudent[]
 }
