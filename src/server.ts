@@ -12,9 +12,4 @@ app.listen(env.PORT, async () => {
     .catch((error) => {
       console.error('Error connecting to database with typeorm', error)
     })
-
-  await appDataSource
-    .runMigrations()
-    .then(() => console.log('Migrations made'))
-    .catch((error) => console.error('Error: ', error.message))
 })
