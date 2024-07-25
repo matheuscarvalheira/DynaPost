@@ -2,9 +2,9 @@ import { env } from './env'
 import { app } from '@/app'
 import { appDataSource } from './lib/typeorm/typeorm'
 
-app.listen(env.PORT, () => {
+app.listen(env.PORT, async () => {
   console.log(`Server is running on http://localhost:${env.PORT}`)
-  appDataSource
+  await appDataSource
     .initialize()
     .then(() => {
       console.log('Database with typeorm connected')
@@ -12,4 +12,9 @@ app.listen(env.PORT, () => {
     .catch((error) => {
       console.error('Error connecting to database with typeorm', error)
     })
+
+  await appDataSource
+    .runMigrations()
+    .then(() => console.log('Migrations made'))
+    .catch((error) => console.error('Error: ', error.message))
 })
