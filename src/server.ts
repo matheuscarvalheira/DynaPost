@@ -2,9 +2,9 @@ import { env } from './env'
 import { app } from '@/app'
 import { appDataSource } from './lib/typeorm/typeorm'
 
-app.listen(env.PORT, async () => {
+app.listen(env.PORT, () => {
   console.log(`Server is running on http://localhost:${env.PORT}`)
-  await appDataSource
+  appDataSource
     .initialize()
     .then(() => {
       console.log('Database with typeorm connected')
