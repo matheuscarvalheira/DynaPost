@@ -16,6 +16,7 @@ import { ClassroomTeacher1721687608034 } from '@/migrations/1721687608034-classr
 import { ClassroomStudent1721688305255 } from '@/migrations/1721688305255-classroomStudent'
 import { PostClassroom1721774946659 } from '@/migrations/1721774946659-postClassroom'
 import { PostTeacher1721775787161 } from '@/migrations/1721775787161-postTeacher'
+import { DbCreation1721343556019 } from '@/migrations/1721343556019-dbCreation'
 
 export const appDataSource: DataSource = new DataSource({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,6 +37,7 @@ export const appDataSource: DataSource = new DataSource({
     ClassroomTeacher,
   ],
   migrations: [
+    DbCreation1721343556019,
     Teachers1721343556020,
     Students1721344741826,
     Classrooms1721345439928,

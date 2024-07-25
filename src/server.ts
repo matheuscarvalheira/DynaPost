@@ -8,6 +8,11 @@ app.listen(env.PORT, () => {
     .initialize()
     .then(() => {
       console.log('Database with typeorm connected')
+      if (env.NODE_ENV === 'development' || env.NODE_ENV === 'production') {
+        appDataSource.runMigrations().then(() => {
+          console.log('Migrations done')
+        })
+      }
     })
     .catch((error) => {
       console.error('Error connecting to database with typeorm', error)
