@@ -6,7 +6,7 @@ export class DbCreation1721343556019 implements MigrationInterface {
             CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
             CREATE TABLE IF NOT EXISTS post (
-                id uuid PRIMARY KEY,
+                id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
                 title varchar NOT NULL,
                 body text NOT NULL,
                 published bool DEFAULT true,
@@ -15,14 +15,14 @@ export class DbCreation1721343556019 implements MigrationInterface {
             );
 
             CREATE TABLE IF NOT EXISTS classroom (
-                id uuid PRIMARY KEY,
+                id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
                 name varchar NOT NULL,
                 created_at timestamp,
                 modified_at timestamp
             );
 
             CREATE TABLE IF NOT EXISTS student (
-                id uuid PRIMARY KEY,
+                id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
                 name varchar NOT NULL,
                 active bool DEFAULT true,
                 created_at timestamp,
@@ -30,7 +30,7 @@ export class DbCreation1721343556019 implements MigrationInterface {
             );
 
             CREATE TABLE IF NOT EXISTS teacher (
-                id uuid PRIMARY KEY,
+                id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
                 name varchar,
                 active bool DEFAULT true,
                 created_at timestamp,
@@ -61,21 +61,21 @@ export class DbCreation1721343556019 implements MigrationInterface {
 
             CREATE UNIQUE INDEX ON classroom_teacher (classroom_id, teacher_id);
 
-            ALTER TABLE post_teacher ADD FOREIGN KEY (teacher_id) REFERENCES teacher (id);
+            ALTER TABLE post_teacher ADD FOREIGN KEY (teacher_id) REFERENCES teacher (id) ON DELETE CASCADE;
 
-            ALTER TABLE post_teacher ADD FOREIGN KEY (post_id) REFERENCES post (id);
+            ALTER TABLE post_teacher ADD FOREIGN KEY (post_id) REFERENCES post (id) ON DELETE CASCADE;
 
-            ALTER TABLE post_classroom ADD FOREIGN KEY (post_id) REFERENCES post (id);
+            ALTER TABLE post_classroom ADD FOREIGN KEY (post_id) REFERENCES post (id) ON DELETE CASCADE;
 
-            ALTER TABLE post_classroom ADD FOREIGN KEY (classroom_id) REFERENCES classroom (id);
+            ALTER TABLE post_classroom ADD FOREIGN KEY (classroom_id) REFERENCES classroom (id) ON DELETE CASCADE;
 
-            ALTER TABLE classroom_student ADD FOREIGN KEY (classroom_id) REFERENCES classroom (id);
+            ALTER TABLE classroom_student ADD FOREIGN KEY (classroom_id) REFERENCES classroom (id) ON DELETE CASCADE;
 
-            ALTER TABLE classroom_student ADD FOREIGN KEY (student_id) REFERENCES student (id);
+            ALTER TABLE classroom_student ADD FOREIGN KEY (student_id) REFERENCES student (id) ON DELETE CASCADE;
 
-            ALTER TABLE classroom_teacher ADD FOREIGN KEY (teacher_id) REFERENCES teacher (id);
+            ALTER TABLE classroom_teacher ADD FOREIGN KEY (teacher_id) REFERENCES teacher (id) ON DELETE CASCADE;
 
-            ALTER TABLE classroom_teacher ADD FOREIGN KEY (classroom_id) REFERENCES classroom (id);
+            ALTER TABLE classroom_teacher ADD FOREIGN KEY (classroom_id) REFERENCES classroom (id) ON DELETE CASCADE;
         `)
   }
 
