@@ -5,14 +5,27 @@ export class DbCreation1721343556019 implements MigrationInterface {
     await queryRunner.query(`
             CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+            CREATE OR REPLACE FUNCTION update_modified_at_column()
+            RETURNS TRIGGER AS $$
+            BEGIN
+                NEW.modified_at = current_timestamp;
+                RETURN NEW;
+            END;
+            $$ LANGUAGE plpgsql;
+
             CREATE TABLE IF NOT EXISTS post (
                 id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
                 title varchar NOT NULL,
                 body text NOT NULL,
                 published bool DEFAULT true,
-                created_at timestamp,
-                modified_at timestamp
+                created_at timestamp DEFAULT current_timestamp,
+                modified_at timestamp DEFAULT current_timestamp
             );
+
+            CREATE TRIGGER set_post_modified_at
+            BEFORE UPDATE ON post
+            FOR EACH ROW
+            EXECUTE FUNCTION update_modified_at_column();
 
             CREATE TABLE IF NOT EXISTS classroom (
                 id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -20,6 +33,11 @@ export class DbCreation1721343556019 implements MigrationInterface {
                 created_at timestamp,
                 modified_at timestamp
             );
+
+            CREATE TRIGGER set_classroom_modified_at
+            BEFORE UPDATE ON classroom
+            FOR EACH ROW
+            EXECUTE FUNCTION update_modified_at_column();
 
             CREATE TABLE IF NOT EXISTS student (
                 id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -29,6 +47,11 @@ export class DbCreation1721343556019 implements MigrationInterface {
                 modified_at timestamp
             );
 
+            CREATE TRIGGER set_student_modified_at
+            BEFORE UPDATE ON student
+            FOR EACH ROW
+            EXECUTE FUNCTION update_modified_at_column();
+
             CREATE TABLE IF NOT EXISTS teacher (
                 id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
                 name varchar,
@@ -36,6 +59,11 @@ export class DbCreation1721343556019 implements MigrationInterface {
                 created_at timestamp,
                 modified_at timestamp
             );
+
+            CREATE TRIGGER set_teacher_modified_at
+            BEFORE UPDATE ON teacher
+            FOR EACH ROW
+            EXECUTE FUNCTION update_modified_at_column();
 
             CREATE TABLE IF NOT EXISTS post_teacher (
                 post_id uuid UNIQUE,
