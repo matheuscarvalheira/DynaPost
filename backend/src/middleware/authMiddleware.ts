@@ -2,16 +2,14 @@ import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 import { env } from '@/env'
 
-const FREE_ACCESS_ROUTES = ['signin', 'register']
+const FREE_ACCESS_ROUTES = ['/signin', '/register']
 
 export const authenticateJWT = (
   request: Request,
   response: Response,
   next: NextFunction,
 ) => {
-  const isAllowedRoute = FREE_ACCESS_ROUTES.includes(
-    request.path.replace(/\//g, ''),
-  )
+  const isAllowedRoute = FREE_ACCESS_ROUTES.includes(request.path)
 
   if (isAllowedRoute) {
     return next()
