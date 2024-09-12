@@ -14,14 +14,6 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     return jwt.sign(user, env.JWT_SECRET, { expiresIn: env.JWT_EXPIRES_IN })
   }
 
-  verifyToken(token: string) {
-    try {
-      return jwt.verify(token, env.JWT_SECRET)
-    } catch (error) {
-      throw new Error('Invalid token')
-    }
-  }
-
   async hashPassword(password: string) {
     return await bcrypt.hash(password, 10)
   }
@@ -47,7 +39,7 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     )
 
     if (!user || !verifiedPassword) {
-      throw new Error('Invalid email or password')
+      throw new Error('e-mail ou senha inválidos')
     }
 
     const token = this.generateToken(authentication)
@@ -68,15 +60,15 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     const existingUser = await this.repository.findOne({ where: { email } })
 
     if (existingUser) {
-      return { error: true, message: 'user already exists' }
+      return { error: true, message: 'email já está registrado' }
     }
 
     const savedUser = await this.repository.save(newUser)
 
     if (savedUser) {
-      return { error: false, message: 'user created successfully' }
+      return { error: false, message: 'usuário criado com sucesso' }
     } else {
-      return { error: true, message: 'user not created successfully' }
+      return { error: true, message: 'usuário não foi criado' }
     }
   }
 }
