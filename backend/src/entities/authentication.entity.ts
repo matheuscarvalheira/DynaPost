@@ -16,11 +16,11 @@ export class Authentication implements IAuthentication {
   id?: string | undefined
 
   @Column({
-    name: 'username',
+    name: 'email',
     type: 'varchar',
     nullable: false,
   })
-  username: string
+  email: string
 
   @Column({
     name: 'password',
@@ -28,6 +28,14 @@ export class Authentication implements IAuthentication {
     nullable: false,
   })
   password: string
+
+  @Column({
+    name: 'accountType',
+    type: 'varchar',
+    nullable: false,
+    default: 'student',
+  })
+  accountType: 'student' | 'teacher'
 
   @CreateDateColumn({
     name: 'created_at',

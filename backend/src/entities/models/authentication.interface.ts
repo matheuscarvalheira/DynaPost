@@ -1,5 +1,6 @@
 export interface IAuthentication {
   id?: string
-  username: string
+  email: string
   password: string
+  accountType?: string
 }

@@ -5,11 +5,13 @@ import { postRoutes } from './http/controllers/post/routes'
 import { studentRoutes } from './http/controllers/student/routes'
 import { classroomRoutes } from './http/controllers/classroom/routes'
 import { teacherRoutes } from './http/controllers/teacher/routes'
+import { authRoutes } from './http/controllers/auth/routes'
 require('express-async-errors')
 
 export const app = express()
 app.use(express.json())
 
+authRoutes(app)
 postRoutes(app)
 teacherRoutes(app)
 

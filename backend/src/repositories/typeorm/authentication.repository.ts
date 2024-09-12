@@ -34,11 +34,11 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     this.repository = appDataSource.getRepository(Authentication)
   }
 
-  async authenticate(authentication: IAuthentication): Promise<string | null> {
-    const { username, password } = authentication
+  async authenticate(authentication: IAuthentication): Promise<object | null> {
+    const { email, password } = authentication
 
     const user = await this.repository.findOne({
-      where: { username },
+      where: { email },
     })
 
     const verifiedPassword = await this.comparePasswords(
@@ -47,24 +47,36 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     )
 
     if (!user || !verifiedPassword) {
-      throw new Error('Invalid username or password')
+      throw new Error('Invalid email or password')
     }
 
     const token = this.generateToken(authentication)
 
-    return token
+    return { error: false, token }
   }
 
-  async register(authentication: IAuthentication): Promise<IAuthentication> {
-    const { username, password } = authentication
+  async register(authentication: IAuthentication): Promise<object | null> {
+    const { email, password } = authentication
 
     const hashedPassword = await this.hashPassword(password)
 
-    const newUser: IAuthentication = {
-      username,
+    const newUser = {
+      email,
       password: hashedPassword,
     }
 
-    return this.repository.save(newUser)
+    const existingUser = await this.repository.findOne({ where: { email } })
+
+    if (existingUser) {
+      return { error: true, message: 'user already exists' }
+    }
+
+    const savedUser = await this.repository.save(newUser)
+
+    if (savedUser) {
+      return { error: false, message: 'user created successfully' }
+    } else {
+      return { error: true, message: 'user not created successfully' }
+    }
   }
 }
