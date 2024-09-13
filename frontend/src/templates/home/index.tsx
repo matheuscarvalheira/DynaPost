@@ -1,12 +1,10 @@
 import { FC } from "react";
-import { Header } from "./header";
-import { Cursos } from "./cursos";
+import { Template } from "./template";
 
 export const HomeTemplate: FC = () => {
   return (
     <>
-      <Header/>
-      <Cursos/>
+      <Template/>
     </>
   )
 }

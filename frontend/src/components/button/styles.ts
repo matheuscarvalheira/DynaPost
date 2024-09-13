@@ -3,7 +3,8 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  color: red;
+  background-color: ${({theme}) => theme.indigoLavander};
+  padding: 10px;
 `
 
-export const Teste  = styled.div``
+export const Teste  = styled.p``

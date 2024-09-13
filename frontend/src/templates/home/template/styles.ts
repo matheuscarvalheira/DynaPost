@@ -1,6 +1,4 @@
 'use client';
-
 import styled from "styled-components";
 
-export const Cursos = styled.div`
-`
+export const Template = styled.div``
