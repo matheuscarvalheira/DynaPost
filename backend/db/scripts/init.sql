@@ -37,6 +37,11 @@ CREATE TABLE IF NOT EXISTS post_teacher (
   "post_id" uuid UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS post_student (
+  "student_id" uuid,
+  "post_id" uuid UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS post_classroom (
   "classroom_id" uuid,
   "post_id" uuid UNIQUE
@@ -50,6 +55,10 @@ CREATE TABLE IF NOT EXISTS student_classroom (
 ALTER TABLE post_teacher ADD FOREIGN KEY (teacher_id) REFERENCES teacher (id);
 
 ALTER TABLE post_teacher ADD FOREIGN KEY (post_id) REFERENCES post (id);
+
+ALTER TABLE post_student ADD FOREIGN KEY (student_id) REFERENCES student (id);
+
+ALTER TABLE post_student ADD FOREIGN KEY (post_id) REFERENCES post (id);
 
 ALTER TABLE post_classroom ADD FOREIGN KEY (post_id) REFERENCES post (id);
 

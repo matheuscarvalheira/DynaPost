@@ -30,12 +30,12 @@ export class Authentication implements IAuthentication {
   password: string
 
   @Column({
-    name: 'accountType',
+    name: 'userType',
     type: 'varchar',
     nullable: false,
     default: 'student',
   })
-  accountType: 'student' | 'teacher'
+  userType: 'student' | 'teacher'
 
   @CreateDateColumn({
     name: 'created_at',

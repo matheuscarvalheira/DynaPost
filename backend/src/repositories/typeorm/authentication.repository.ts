@@ -22,6 +22,20 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     return await bcrypt.compare(password, hash)
   }
 
+  static verifyToken(token: string) {
+    try {
+      return jwt.verify(token, env.JWT_SECRET)
+    } catch (error) {
+      if (error instanceof jwt.TokenExpiredError) {
+        throw new Error('Token expired')
+      } else if (error instanceof jwt.JsonWebTokenError) {
+        throw new Error('Invalid token')
+      } else {
+        throw new Error('Token verification failed')
+      }
+    }
+  }
+
   constructor() {
     this.repository = appDataSource.getRepository(Authentication)
   }
@@ -33,12 +47,16 @@ export class AuthenticationRepository implements IAuthenticationRepository {
       where: { email },
     })
 
+    if (!user) {
+      throw new Error('usuário não registrado')
+    }
+
     const verifiedPassword = await this.comparePasswords(
       password,
       user!.password,
     )
 
-    if (!user || !verifiedPassword) {
+    if (!verifiedPassword) {
       throw new Error('e-mail ou senha inválidos')
     }
 
@@ -50,17 +68,17 @@ export class AuthenticationRepository implements IAuthenticationRepository {
   async register(authentication: IAuthentication): Promise<object | null> {
     const { email, password } = authentication
 
+    const existingUser = await this.repository.findOne({ where: { email } })
+
+    if (existingUser) {
+      return { error: true, message: 'email já está registrado' }
+    }
+
     const hashedPassword = await this.hashPassword(password)
 
     const newUser = {
       email,
       password: hashedPassword,
-    }
-
-    const existingUser = await this.repository.findOne({ where: { email } })
-
-    if (existingUser) {
-      return { error: true, message: 'email já está registrado' }
     }
 
     const savedUser = await this.repository.save(newUser)

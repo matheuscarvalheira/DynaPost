@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
-import jwt from 'jsonwebtoken'
-import { env } from '@/env'
+// import jwt from 'jsonwebtoken'
+// import { env } from '@/env'
+import { AuthenticationRepository } from '@/repositories/typeorm/authentication.repository'
 
 const FREE_ACCESS_ROUTES = ['/signin', '/register']
 
@@ -24,9 +25,15 @@ export const authenticateJWT = (
   }
 
   try {
-    jwt.verify(token, env.JWT_SECRET)
+    // jwt.verify(token, env.JWT_SECRET)
+    AuthenticationRepository.verifyToken(token)
     next()
   } catch (error) {
-    return response.status(403).json({ message: 'Token inválido' })
+    if (error instanceof Error && error?.message === 'Token expired') {
+      return response
+        .status(401)
+        .json({ message: 'Token expirado', error: true })
+    }
+    return response.status(403).json({ message: 'Token inválido', error: true })
   }
 }

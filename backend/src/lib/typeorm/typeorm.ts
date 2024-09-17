@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm'
 import { env } from '@/env'
 import { Post } from '@/entities/post.entity'
 import { PostTeacher } from '@/entities/post-teacher.entity'
+import { PostStudent } from '@/entities/post-student.entity'
 import { PostClassroom } from '@/entities/post-classroom.entity'
 import { Teacher } from '@/entities/teacher.entity'
 import { Classroom } from '@/entities/classroom.entity'
@@ -34,6 +35,7 @@ export const appDataSource: DataSource = new DataSource({
     Student,
     PostClassroom,
     PostTeacher,
+    PostStudent,
     ClassroomStudent,
     ClassroomTeacher,
     Authentication,
