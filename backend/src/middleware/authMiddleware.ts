@@ -1,6 +1,4 @@
 import { Request, Response, NextFunction } from 'express'
-// import jwt from 'jsonwebtoken'
-// import { env } from '@/env'
 import { AuthenticationRepository } from '@/repositories/typeorm/authentication.repository'
 
 const FREE_ACCESS_ROUTES = ['/signin', '/register']
@@ -25,7 +23,6 @@ export const authenticateJWT = (
   }
 
   try {
-    // jwt.verify(token, env.JWT_SECRET)
     AuthenticationRepository.verifyToken(token)
     next()
   } catch (error) {
