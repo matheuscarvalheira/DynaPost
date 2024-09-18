@@ -1,6 +1,6 @@
 import { IClassroomStudentRepository } from '@/repositories/classroom-student.interface'
 
-export class FindUserClassroomUseCase {
+export class FindStudentClassroomUseCase {
   constructor(private classroomRepository: IClassroomStudentRepository) {}
 
   async handler({ student_id }: { student_id: string }) {

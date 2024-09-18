@@ -12,9 +12,9 @@ export async function getClassroomsForStudent(
 
   const { student_id } = classroomStudentParamsSchema.parse(request.params)
 
-  const findUserClassroomsUseCase = makeCreateFindStudentsClassroomsUseCase()
+  const findStudentClassroomsUseCase = makeCreateFindStudentsClassroomsUseCase()
 
-  const classroomList = await findUserClassroomsUseCase.handler({
+  const classroomList = await findStudentClassroomsUseCase.handler({
     student_id,
   })
   return response.status(200).json(classroomList)

@@ -9,6 +9,7 @@ import { addStudentToClassroom } from './add-student-to-classroom'
 import { removeStudentFromClassroom } from './remove-student-from-classroom'
 import { removeTeacherFromClassroom } from './remove-teacher-from-classroom'
 import { getClassroomsForStudent } from './get-classrooms-student'
+import { getClassroomsForTeacher } from './get-classrooms-teacher'
 
 export async function classroomRoutes(app: Application) {
   app.post('/classrooms/teachers', addTeacherToClassroom)
@@ -16,6 +17,7 @@ export async function classroomRoutes(app: Application) {
   app.get('/classrooms', findAllClassrooms)
   app.get('/classrooms/:id', findClassroom)
   app.get('/classrooms/students/:student_id', getClassroomsForStudent)
+  app.get('/classrooms/teachers/:teacher_id', getClassroomsForTeacher)
   app.post('/classrooms', create)
   app.put('/classrooms/:id', update)
   app.delete('/classrooms/:id', remove)
