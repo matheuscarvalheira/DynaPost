@@ -2,34 +2,40 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { IStudent } from './models/student.interface'
+import { IAuthentication } from './models/authentication.interface'
 import { env } from '@/env'
-import { ClassroomStudent } from './classroom-student.entity'
-import { PostStudent } from './post-student.entity'
 
-@Entity('student')
-export class Student implements IStudent {
+@Entity('auth')
+export class Authentication implements IAuthentication {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
   })
   id?: string | undefined
 
   @Column({
-    name: 'name',
+    name: 'email',
     type: 'varchar',
+    nullable: false,
   })
-  name: string
+  email: string
 
   @Column({
-    name: 'active',
-    type: env.NODE_ENV === 'test' ? 'integer' : 'boolean',
-    default: true,
+    name: 'password',
+    type: 'varchar',
+    nullable: false,
   })
-  active: boolean
+  password: string
+
+  @Column({
+    name: 'userType',
+    type: 'varchar',
+    nullable: false,
+    default: 'student',
+  })
+  userType: 'student' | 'teacher'
 
   @CreateDateColumn({
     name: 'created_at',
@@ -44,13 +50,4 @@ export class Student implements IStudent {
     nullable: false,
   })
   modifiedAt: Date
-
-  @OneToMany(() => PostStudent, (postStudent) => postStudent.student)
-  posts: PostStudent[]
-
-  @OneToMany(
-    () => ClassroomStudent,
-    (classroomStudent) => classroomStudent.student,
-  )
-  classroomStudent: ClassroomStudent[]
 }
