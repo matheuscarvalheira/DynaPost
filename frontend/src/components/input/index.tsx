@@ -1,8 +1,10 @@
-import { ReactNode, useState } from "react";
-import * as S from './styles';
-import { InputProps } from "./props";
+'use client';
+import React, { useState } from 'react';
+import { InputProps } from './props';
+import { InputWrapper, StyledInput, SearchIcon } from './styles';
+import { FaSearch } from 'react-icons/fa';
 
-export const InputComponent = ({ placeholder = "Digite..." }: InputProps): ReactNode => {
+export const Input = ({ placeholder = 'Digite', showIcon = false }: InputProps) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -10,14 +12,18 @@ export const InputComponent = ({ placeholder = "Digite..." }: InputProps): React
   };
 
   return (
-    <S.InputWrapper>
-      <S.StyledInput 
-        type="text" 
+    <InputWrapper>
+      {showIcon && (
+        <SearchIcon>
+          <FaSearch />
+        </SearchIcon>
+      )}
+      <StyledInput 
         value={inputValue} 
         onChange={handleChange} 
         placeholder={placeholder} 
+        showIcon={showIcon}
       />
-      <S.InputText>Você digitou: {inputValue}</S.InputText>
-    </S.InputWrapper>
+    </InputWrapper>
   );
 };
