@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState } from 'react';
 import * as S from './styles';
-import { RadioButtonProps } from "./props";
+import { RadioButtonProps } from './props';
 
 export const RadioButtons = ({options}: RadioButtonProps) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
