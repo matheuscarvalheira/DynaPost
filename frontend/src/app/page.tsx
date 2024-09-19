@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isopen={isModalOpen} onClose={closeModal}>
         <Input placeholder="Buscar..." showIcon={true} />
         <Input placeholder="Digite algo..." showIcon={false} />
         <Textarea placeholder="Digite" />

@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ModalProps {
-  isOpen: boolean;
+  isopen: boolean;
   onClose: () => void;
   children: React.ReactNode;
 }
 
-const ModalBackground = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+const ModalBackground = styled.div<{ isopen: boolean }>`
+  display: ${({ isopen }) => (isopen ? 'flex' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -30,9 +30,9 @@ const ModalContent = styled.div`
   width: 100%;
 `;
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({ isopen, onClose, children }) => {
   return (
-    <ModalBackground isOpen={isOpen} onClick={onClose}>
+    <ModalBackground isopen={isopen} onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         {children}
       </ModalContent>

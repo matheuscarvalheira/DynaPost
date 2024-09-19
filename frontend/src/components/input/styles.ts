@@ -5,7 +5,7 @@ export const InputWrapper = styled.div`
   position: relative;
 `;
 
-export const StyledInput = styled.input<{ showIcon: boolean }>`
+export const StyledInput = styled.input<{ $showIcon: boolean }>`
   padding: 20px;
   border-radius: 50px;
   width: 100%;
@@ -13,7 +13,7 @@ export const StyledInput = styled.input<{ showIcon: boolean }>`
   height: 30px;
   background-color: ${({theme}) => theme.greenCharleson};
   color: ${({theme}) => theme.white};
-  padding-left: ${({ showIcon }) => (showIcon ? '40px' : '10px')};
+  padding-left: ${({ $showIcon }) => ($showIcon ? '40px' : '10px')};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 

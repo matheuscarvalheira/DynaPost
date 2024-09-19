@@ -22,7 +22,7 @@ export const Input = ({ placeholder = 'Digite', showIcon = false }: InputProps) 
         value={inputValue} 
         onChange={handleChange} 
         placeholder={placeholder} 
-        showIcon={showIcon}
+        $showIcon={showIcon}
       />
     </InputWrapper>
   );
