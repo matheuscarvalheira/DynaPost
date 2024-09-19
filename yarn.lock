@@ -1844,9 +1844,10 @@ babel-preset-jest@^29.6.3:
     babel-plugin-jest-hoist "^29.6.3"
     babel-preset-current-node-syntax "^1.0.0"
 
-"backend@file:backend":
+"backend@file:c:\\dev\\FIAP\\TechChallenge\\Fase 3\\DynaPost\\backend":
   version "1.0.0"
   dependencies:
+    backend "file:"
     backend "file:../../../../Library/Caches/Yarn/v6/npm-backend-1.0.0-dbe6db05-5987-4417-b54c-6cff72310375-1726608700197/node_modules/backend"
     dotenv "16.4.5"
     express "4.19.2"
@@ -3327,10 +3328,10 @@ fresh@0.5.2:
   resolved "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
   integrity sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==
 
-"frontend@file:frontend":
+"frontend@file:", "frontend@file:frontend":
   version "0.1.0"
   dependencies:
-    frontend "file:../../../../Library/Caches/Yarn/v6/npm-frontend-0.1.0-a352f885-f975-47cf-8266-64666a6bb349-1726608700198/node_modules/frontend"
+    frontend "file:"
     next "14.2.10"
     react "^18"
     react-dom "^18"
