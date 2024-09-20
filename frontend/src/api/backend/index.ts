@@ -1,18 +1,18 @@
 import axios, { AxiosInstance } from "axios";
 import { destroyCookie, parseCookies } from "nookies";
 
-export function getApiClient(ctx?:any): AxiosInstance{
+export function getApiClient(ctx?:never): AxiosInstance{
     
-    const API = axios.create({
+    const api = axios.create({
         baseURL: 'http://localhost:3001'
     })
     
-    API.interceptors.request.use(config => {
+    api.interceptors.request.use(config => {
         console.log('Request', config)
         return config
     })
 
-    API.interceptors.response.use(
+    api.interceptors.response.use(
         (response) => {
           return response;
         },
@@ -22,7 +22,8 @@ export function getApiClient(ctx?:any): AxiosInstance{
           if (error.response.status === 401) {
             console.log('Session expired, redirecting to login...');
             destroyCookie(ctx, 'DynaPost.Token')
-            delete API.defaults.headers.common["Authorization"]
+            delete api.defaults.headers.common["Authorization"]
+            window.location.href = '/login';
           } else if (error.response.status === 500) {
             console.log('Internal server error. Please try again later.');
           }
@@ -34,10 +35,10 @@ export function getApiClient(ctx?:any): AxiosInstance{
     const { 'DynaPost.Token': token } = parseCookies(ctx)
     
     if (token) {
-        API.defaults.headers['Authorization'] = `Bearer ${token}`
+        api.defaults.headers['Authorization'] = `Bearer ${token}`
     }
 
-    return API
+    return api
 }
 
-export const API = getApiClient()
+export const api = getApiClient()

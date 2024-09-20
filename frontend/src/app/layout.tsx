@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthProvider } from "@/contexts/AuthContext";
+import { AuthProvider } from "@/contexts/auth-context";
 import { StyledComponentsRegistry } from "@/lib/registry";
 import { GlobalStyled } from "@/styles/global";
 import { theme } from "@/styles/theme";
