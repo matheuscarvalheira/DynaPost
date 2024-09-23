@@ -60,7 +60,7 @@ export class AuthenticationRepository implements IAuthenticationRepository {
       throw new Error('e-mail ou senha inválidos')
     }
 
-    const token = this.generateToken(authentication)
+    const token = this.generateToken(user)
 
     return { error: false, token }
   }
