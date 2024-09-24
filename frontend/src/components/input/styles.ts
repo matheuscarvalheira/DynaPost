@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const InputWrapper = styled.div`
-  margin: 50px 50px;
   position: relative;
 `;
 
