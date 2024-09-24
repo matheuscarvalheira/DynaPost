@@ -32,7 +32,6 @@ export const authenticateJWT = (
     const { userType } = AuthenticationRepository.verifyToken(token)
 
     const isAllowed = rolePermissions[userType].includes(request.method)
-
     if (!isAllowed) {
       return response.status(401).json({ message: 'Não autorizado' })
     }
