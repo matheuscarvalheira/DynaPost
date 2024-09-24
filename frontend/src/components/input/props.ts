@@ -4,4 +4,5 @@ export interface InputProps {
   type?: string
   autocomplete?: string
   name?: string
+  required?: boolean
 }
