@@ -15,7 +15,7 @@ export const ModalBackground = styled.div<{ isopen: boolean }>`
 
 export const ModalContent = styled.div`
   background-color: #202024;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: white;
