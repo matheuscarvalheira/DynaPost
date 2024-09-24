@@ -26,7 +26,6 @@ export const GlobalStyled = createGlobalStyle`
 
   html, body, #_next {
     height: 100%;
-    overflow: hidden;
   }
 
   html, body, #__next, main {
