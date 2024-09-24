@@ -3,6 +3,12 @@ import { AuthenticationRepository } from '@/repositories/typeorm/authentication.
 
 const FREE_ACCESS_ROUTES = ['/signin', '/register']
 
+const rolePermissions = {
+  admin: ['GET', 'POST', 'PUT', 'DELETE'],
+  teacher: ['GET', 'POST'],
+  student: ['GET'],
+}
+
 export const authenticateJWT = (
   request: Request,
   response: Response,
@@ -23,7 +29,14 @@ export const authenticateJWT = (
   }
 
   try {
-    AuthenticationRepository.verifyToken(token)
+    const { userType } = AuthenticationRepository.verifyToken(token)
+
+    const isAllowed = rolePermissions[userType].includes(request.method)
+
+    if (!isAllowed) {
+      return response.status(401).json({ message: 'Não autorizado' })
+    }
+
     next()
   } catch (error) {
     if (error instanceof Error && error?.message === 'Token expired') {
