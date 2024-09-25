@@ -22,6 +22,9 @@ export const errorHandlerMap: ErrorHandlerMap = {
   QueryFailedError: (error, _, res) => {
     return res.status(400).json({ message: error.message })
   },
+  Error: (error, _, res) => {
+    return res.status(400).json({ message: error.message })
+  },
 }
 
 export const globalErrorHandler = (

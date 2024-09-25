@@ -10,6 +10,10 @@
   "author": "Mário André Martins <mario.andre.m@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "dynapost": "file:"
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "bcryptjs": "^2.4.3",
+    "dynapost": "file:",
+    "jsonwebtoken": "^9.0.2"
   }
 }

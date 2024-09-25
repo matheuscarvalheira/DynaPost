@@ -2,12 +2,14 @@ import { DataSource } from 'typeorm'
 import { env } from '@/env'
 import { Post } from '@/entities/post.entity'
 import { PostTeacher } from '@/entities/post-teacher.entity'
+import { PostStudent } from '@/entities/post-student.entity'
 import { PostClassroom } from '@/entities/post-classroom.entity'
 import { Teacher } from '@/entities/teacher.entity'
 import { Classroom } from '@/entities/classroom.entity'
 import { Student } from '@/entities/student.entity'
 import { ClassroomStudent } from '@/entities/classroom-student.entity'
 import { ClassroomTeacher } from '@/entities/classroom-teacher.entity'
+import { Authentication } from '@/entities/authentication.entity'
 import { Teachers1721343556020 } from '@/migrations/1721343556020-teachers'
 import { Students1721344741826 } from '@/migrations/1721344741826-students'
 import { Classrooms1721345439928 } from '@/migrations/1721345439928-classrooms'
@@ -33,8 +35,10 @@ export const appDataSource: DataSource = new DataSource({
     Student,
     PostClassroom,
     PostTeacher,
+    PostStudent,
     ClassroomStudent,
     ClassroomTeacher,
+    Authentication,
   ],
   migrations: [
     DbCreation1721343556019,
