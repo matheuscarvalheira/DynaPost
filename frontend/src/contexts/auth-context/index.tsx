@@ -1,5 +1,5 @@
 import { createContext, useEffect } from "react";
-import { AuthContextProps, AuthProviderProps, SignInProps } from "./props";
+import { AuthContextProps, AuthProviderProps, SignInProps, SignResult } from "./props";
 import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { api } from "@/api/backend";
 import { usePathname, useRouter} from "next/navigation";
@@ -24,23 +24,24 @@ export function AuthProvider({ children }: AuthProviderProps){
         }
     }, [pathname])
 
-    async function signIn({ email, password }: SignInProps): Promise<boolean> {
-        api.post('signin', { email, password })
-            .then(response => {
-                const { error, token } = response.data
-                if (error) {
-                    console.error('SignIn Failed')
-                    return false
-                }
-                setCookie(undefined, 'DynaPost.Token', token, {
-                    maxAge: 60 * 30 //30 minutes
-                })
-                api.defaults.headers['Authorization'] = `Bearer ${token}`
-            })
-            .catch(error => {
-                console.error('SignIn Failed', error)
-            })
-        return true
+    async function signIn({ email, password }: SignInProps): Promise<SignResult> {
+        try {
+          const response = await api.post('signin', { email, password });
+          const { error, token } = response.data;
+      
+          if (error) {
+            console.error('SignIn Failed: Invalid Username or Password');
+            return {signInOk: false, message: 'Usuário ou Senha Inválidos'};
+          }
+      
+          setCookie(undefined, 'DynaPost.Token', token, { maxAge: 60 * 30 }); // 30 minutes
+          api.defaults.headers['Authorization'] = `Bearer ${token}`;
+      
+          return {signInOk: true, message: 'Login realizado com Sucesso!'};
+        } catch (error) {
+          console.error('SignIn Failed:', error);
+          return {signInOk: false, message: 'Usuário ou Senha Inválidos'}
+        }
     }
 
     function logOut(){

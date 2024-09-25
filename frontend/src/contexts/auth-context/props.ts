@@ -1,5 +1,5 @@
 export interface AuthContextProps{
-    signIn: ({ email, password }: SignInProps) => Promise<boolean>,
+    signIn: ({ email, password }: SignInProps) => Promise<SignResult>,
     logOut: () => void,
 }
 
@@ -8,6 +8,11 @@ export interface AuthProviderProps{
 }
 
 export interface SignInProps{
-    email: string,
-    password: string,
+    email: string | undefined,
+    password: string | undefined,
+}
+
+export interface SignResult{
+    signInOk: boolean,
+    message: string | undefined | unknown,
 }

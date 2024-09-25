@@ -1902,7 +1902,7 @@ babel-preset-jest@^29.6.3:
 "backend@file:backend":
   version "1.0.0"
   dependencies:
-    backend "file:../../../../../Users/vinic/AppData/Local/Yarn/Cache/v6/npm-backend-1.0.0-2083ff09-306a-4793-bb43-9daf2c1d24c2-1727227175906/node_modules/backend"
+    backend "file:../../../../../Users/vinic/AppData/Local/Yarn/Cache/v6/npm-backend-1.0.0-0e4efc2b-0f09-4f2b-9c5c-63d7ef3ea60d-1727230367162/node_modules/backend"
     cors "2.8.5"
     dotenv "16.4.5"
     express "4.19.2"
@@ -2230,6 +2230,11 @@ cliui@^8.0.1:
     string-width "^4.2.0"
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
+
+clsx@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
+  integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
 co@^4.6.0:
   version "4.6.0"
@@ -2595,7 +2600,7 @@ dotenv@16.4.5, dotenv@^16.0.3:
     "@types/express" "^4.17.21"
     "@types/jsonwebtoken" "^9.0.6"
     bcryptjs "^2.4.3"
-    dynapost "file:../../../../../Users/vinic/AppData/Local/Yarn/Cache/v6/npm-dynapost-1.0.0-05d7ec08-225b-4af8-813d-e71cd1fdcbd0-1727227175904/node_modules/dynapost"
+    dynapost "file:../../../../../Users/vinic/AppData/Local/Yarn/Cache/v6/npm-dynapost-1.0.0-2904153e-d36b-4a17-810d-b86d9eaf2ee7-1727230367161/node_modules/dynapost"
     jsonwebtoken "^9.0.2"
 
 eastasianwidth@^0.2.0:
@@ -3425,8 +3430,9 @@ fresh@0.5.2:
 "frontend@file:frontend":
   version "0.1.0"
   dependencies:
+    "@types/nookies" "^2.0.3"
     axios "^1.7.7"
-    frontend "file:../../../../../Users/vinic/AppData/Local/Yarn/Cache/v6/npm-frontend-0.1.0-3a4a23af-ec09-450c-9ea9-35cb8bbad488-1727227175905/node_modules/frontend"
+    frontend "file:../../../../../Users/vinic/AppData/Local/Yarn/Cache/v6/npm-frontend-0.1.0-233d2511-2c6f-48ad-b816-3b26a7f661f3-1727230367162/node_modules/frontend"
     next "14.2.10"
     nookies "^2.5.2"
     react "^18"
@@ -5691,6 +5697,13 @@ react-is@^18.0.0:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
+
+react-toastify@^10.0.5:
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-10.0.5.tgz#6b8f8386060c5c856239f3036d1e76874ce3bd1e"
+  integrity sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==
+  dependencies:
+    clsx "^2.1.0"
 
 react@^18:
   version "18.3.1"
