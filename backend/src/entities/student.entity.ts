@@ -9,6 +9,7 @@ import {
 import { IStudent } from './models/student.interface'
 import { env } from '@/env'
 import { ClassroomStudent } from './classroom-student.entity'
+import { PostStudent } from './post-student.entity'
 
 @Entity('student')
 export class Student implements IStudent {
@@ -43,6 +44,9 @@ export class Student implements IStudent {
     nullable: false,
   })
   modifiedAt: Date
+
+  @OneToMany(() => PostStudent, (postStudent) => postStudent.student)
+  posts: PostStudent[]
 
   @OneToMany(
     () => ClassroomStudent,

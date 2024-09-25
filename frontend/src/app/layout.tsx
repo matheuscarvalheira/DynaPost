@@ -1,5 +1,6 @@
 'use client';
 
+import { AuthProvider } from "@/contexts/auth-context";
 import { StyledComponentsRegistry } from "@/lib/registry";
 import { GlobalStyled } from "@/styles/global";
 import { theme } from "@/styles/theme";
@@ -15,8 +16,10 @@ export default function RootLayout({
       <body>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
-            <GlobalStyled />
-            {children}
+            <AuthProvider>
+              <GlobalStyled />
+              {children}
+            </AuthProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
