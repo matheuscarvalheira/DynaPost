@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RadioButtonsWrapper = styled.div`
+export const ButtonGroupWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -14,4 +14,7 @@ export const StyledLabel = styled.label<{ $isChecked: boolean }>`
     border: ${(props) => (props.$isChecked ? '2px solid white' : '2px solid #8257E5')};
     cursor: pointer;
     font-size: 1rem;
+    button {
+        user-select: none;
+    }
 `

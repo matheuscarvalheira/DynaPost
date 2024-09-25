@@ -3,26 +3,47 @@ import { useState } from 'react';
 import * as S from './styles';
 import { RadioButtonProps } from './props';
 
-export const RadioButtons = ({options}: RadioButtonProps) => {
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+export const ButtonGroup = ({options, groupName, required, checkbox}: RadioButtonProps) => {
+    const [selected, setSelected] = useState<string | string[]>(checkbox ? [] : '');
 
     const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectedOption(e.target.value);
+        const {value, checked} = e.target
+        if (!checkbox) return setSelected(value)
+        
+        setSelected((prev) => {
+            if (Array.isArray(prev)) {
+                if (checked) {
+                    return [...prev, value];
+                }
+                return prev.filter((option) => option !== value);
+            }
+            return prev;
+        });
+       
+    };
+
+    const isChecked = (value: string) => {
+        if (checkbox && Array.isArray(selected)) {
+            return selected.includes(value);
+        }
+        return selected === value;
     };
 
     return (
-        <S.RadioButtonsWrapper>
+        <S.ButtonGroupWrapper>
             {options?.length > 0 && options.map((option) => 
-                <S.StyledLabel key={option.value} $isChecked={option.value === selectedOption}>
+                <S.StyledLabel key={option.value} $isChecked={!checkbox ? option.value === selected : selected?.includes(option.value)}>
                     <input 
-                        type="radio"
+                        type={checkbox ? "checkbox" : "radio"}
                         value={option.value}
-                        checked={option.value === selectedOption}
+                        checked={isChecked(option.value)}
                         onChange={handleOptionChange}
+                        name={groupName}
+                        required={required && !checkbox}
                     />
                     {option.label}
                 </S.StyledLabel>
             )}
-        </S.RadioButtonsWrapper>
+        </S.ButtonGroupWrapper>
     )
 }
