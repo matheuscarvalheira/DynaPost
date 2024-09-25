@@ -4,7 +4,7 @@ import { InputProps } from './props';
 import { InputWrapper, StyledInput, SearchIcon } from './styles';
 import { FaSearch } from 'react-icons/fa';
 
-export const Input = ({ placeholder = 'Digite', showIcon = false }: InputProps) => {
+export const Input = ({ placeholder = 'Digite', showIcon = false, ...props }: InputProps) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +23,7 @@ export const Input = ({ placeholder = 'Digite', showIcon = false }: InputProps) 
         onChange={handleChange} 
         placeholder={placeholder} 
         $showIcon={showIcon}
+        {...props}
       />
     </InputWrapper>
   );
