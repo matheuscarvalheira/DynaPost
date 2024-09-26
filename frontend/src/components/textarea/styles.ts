@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export const TextareaWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 50px 50px;
 `;
 
 export const StyledTextarea = styled.textarea`

@@ -4,7 +4,7 @@ import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { api } from "@/api/backend";
 import { usePathname, useRouter} from "next/navigation";
 
-const FREE_ACCESS_PATHNAMES = ['/', '/login', '/register']
+const FREE_ACCESS_PATHNAMES = ['/', '/login', '/register', '/createpost']
 
 export const AuthContext = createContext({} as AuthContextProps)
 
