@@ -13,8 +13,10 @@ export class PostClassroomRepository implements IPostClassroomRepository {
   constructor(transactionManager?: EntityManager) {
     if (transactionManager) {
       this.repository = transactionManager.getRepository(PostClassroom)
+      this.postRepository = transactionManager.getRepository(Post)
     } else {
       this.repository = appDataSource.getRepository(PostClassroom)
+      this.postRepository = appDataSource.getRepository(Post)
     }
   }
 

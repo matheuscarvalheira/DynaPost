@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm'
+import { EntityManager, Repository } from 'typeorm'
 import { appDataSource } from '@/lib/typeorm/typeorm'
 import { IClassroomStudentRepository } from '../classroom-student.interface'
 import { ClassroomStudent } from '@/entities/classroom-student.entity'
@@ -10,9 +10,14 @@ export class ClassroomStudentRepository implements IClassroomStudentRepository {
   private repository: Repository<ClassroomStudent>
   private classroomRepository: Repository<Classroom>
 
-  constructor() {
-    this.repository = appDataSource.getRepository(ClassroomStudent)
-    this.classroomRepository = appDataSource.getRepository(Classroom)
+  constructor(transactionManager?: EntityManager) {
+    if (transactionManager) {
+      this.repository = transactionManager.getRepository(ClassroomStudent)
+      this.classroomRepository = transactionManager.getRepository(Classroom)
+    } else {
+      this.repository = appDataSource.getRepository(ClassroomStudent)
+      this.classroomRepository = appDataSource.getRepository(Classroom)
+    }
   }
 
   async addStudentClassroomPair(pair: IClassroomStudent): Promise<void> {

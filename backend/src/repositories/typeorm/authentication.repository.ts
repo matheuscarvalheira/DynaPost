@@ -1,11 +1,14 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-import { IAuthentication } from '@/entities/models/authentication.interface'
+import {
+  IAuthentication,
+  IAuthenticationResponseData,
+} from '@/entities/models/authentication.interface'
 import { IAuthenticationRepository } from '../authentication.interface'
 import { appDataSource } from '@/lib/typeorm/typeorm'
 import { Authentication } from '@/entities/authentication.entity'
 import { env } from '@/env'
-import { Repository } from 'typeorm'
+import { DeepPartial, EntityManager, Repository } from 'typeorm'
 
 export class AuthenticationRepository implements IAuthenticationRepository {
   private repository: Repository<Authentication>
@@ -36,8 +39,12 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     }
   }
 
-  constructor() {
-    this.repository = appDataSource.getRepository(Authentication)
+  constructor(transactionManager?: EntityManager) {
+    if (transactionManager) {
+      this.repository = transactionManager.getRepository(Authentication)
+    } else {
+      this.repository = appDataSource.getRepository(Authentication)
+    }
   }
 
   async authenticate(authentication: IAuthentication): Promise<object | null> {
@@ -69,11 +76,13 @@ export class AuthenticationRepository implements IAuthenticationRepository {
 
     const token = this.generateToken(tokenData)
 
-    return { error: false, token }
+    return { error: false, userId: user.id, userType: user.userType, token }
   }
 
-  async register(authentication: IAuthentication): Promise<object | null> {
-    const { email, password } = authentication
+  async register(
+    authentication: IAuthentication,
+  ): Promise<IAuthenticationResponseData> {
+    const { email, password, userType } = authentication
 
     const existingUser = await this.repository.findOne({ where: { email } })
 
@@ -83,15 +92,23 @@ export class AuthenticationRepository implements IAuthenticationRepository {
 
     const hashedPassword = await this.hashPassword(password)
 
-    const newUser = {
+    const newUser: DeepPartial<Authentication> = {
       email,
       password: hashedPassword,
+      userType:
+        userType === 'student' || userType === 'teacher' ? userType : undefined,
     }
 
     const savedUser = await this.repository.save(newUser)
 
     if (savedUser) {
-      return { error: false, message: 'usuário criado com sucesso' }
+      return {
+        error: false,
+        message: 'usuário criado com sucesso',
+        email: savedUser.email,
+        id: savedUser.id,
+        userType: savedUser.userType,
+      }
     } else {
       return { error: true, message: 'usuário não foi criado' }
     }

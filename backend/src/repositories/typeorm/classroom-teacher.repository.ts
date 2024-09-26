@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm'
+import { EntityManager, Repository } from 'typeorm'
 import { IClassroomTeacherRepository } from '../classroom-teacher.interface'
 import { ClassroomTeacher } from '@/entities/classroom-teacher.entity'
 import { appDataSource } from '@/lib/typeorm/typeorm'
@@ -10,9 +10,14 @@ export class ClassroomTeacherRepository implements IClassroomTeacherRepository {
   private repository: Repository<ClassroomTeacher>
   private classroomRepository: Repository<Classroom>
 
-  constructor() {
-    this.repository = appDataSource.getRepository(ClassroomTeacher)
-    this.classroomRepository = appDataSource.getRepository(Classroom)
+  constructor(transactionManager?: EntityManager) {
+    if (transactionManager) {
+      this.repository = transactionManager.getRepository(ClassroomTeacher)
+      this.classroomRepository = transactionManager.getRepository(Classroom)
+    } else {
+      this.repository = appDataSource.getRepository(ClassroomTeacher)
+      this.classroomRepository = appDataSource.getRepository(Classroom)
+    }
   }
 
   async addTeacherClassroomPair(pair: ClassroomTeacher): Promise<void> {

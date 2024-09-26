@@ -35,7 +35,7 @@ export class Authentication implements IAuthentication {
     nullable: false,
     default: 'student',
   })
-  userType: 'student' | 'teacher' | 'admin'
+  userType: 'student' | 'teacher'
 
   @CreateDateColumn({
     name: 'created_at',
