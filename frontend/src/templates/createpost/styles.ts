@@ -20,7 +20,7 @@ export const Dropdown = styled(_Dropdown)`
 `;
 
 export const Textarea = styled(_Textarea)`
-    width: 90%; !important
-    margin: 30px; 
-    color: red; !important;
+    width: 90%;
+    margin: 30px;
+    color: red; 
 `;

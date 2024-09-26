@@ -10,7 +10,7 @@ export const CreatePostTemplate: FC = () => {
 
     return (
         <div>
-            <S.Modal isopen={true} onClose={() => {}} children={
+            <S.Modal isopen={true} onClose={() => {}}>
                 <div>
                     <S.Input 
                         placeholder="Título" 
@@ -22,7 +22,7 @@ export const CreatePostTemplate: FC = () => {
                         value="" 
                         onChange={handleChange}/>
                 </div>
-            } />
+            </S.Modal>
         </div>
     )
 }
