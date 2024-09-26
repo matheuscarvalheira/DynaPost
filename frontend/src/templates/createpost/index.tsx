@@ -12,6 +12,8 @@ export const CreatePostTemplate: FC = () => {
         <div>
             <S.Modal isopen={true} onClose={() => {}}>
                 <div>
+                    <S.Dropdown 
+                    items={['Turma 1', 'Turma 2', 'Turma 3']}/>
                     <S.Input 
                         placeholder="Título" 
                         required type="text" 
@@ -21,6 +23,8 @@ export const CreatePostTemplate: FC = () => {
                         placeholder="Conteúdo" 
                         value="" 
                         onChange={handleChange}/>
+                    <S.Button 
+                    type="submit" text="Publicar"/>
                 </div>
             </S.Modal>
         </div>
