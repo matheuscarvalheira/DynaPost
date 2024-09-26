@@ -22,14 +22,13 @@ export const LoginTemplate: FC = () => {
 
         signIn({ email, password })
             .then(result => {
-                console.log(result)
                 const { signInOk, message } = result
                 if (signInOk) {
-                    router.push('/feed')
+                    router.push('/')
                 } else {
                     toast.error(message as ToastContent<unknown>, {
                         position: "top-right",
-                        autoClose: 3000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { AuthenticationRepository } from '@/repositories/typeorm/authentication.repository'
 
-const FREE_ACCESS_ROUTES = ['/signin', '/register']
+const FREE_ACCESS_ROUTES = ['/signin', '/register', '/classrooms']
 
 const rolePermissions = {
   admin: ['GET', 'POST', 'PUT', 'DELETE'],
