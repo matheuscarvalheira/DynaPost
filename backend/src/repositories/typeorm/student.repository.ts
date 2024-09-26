@@ -1,14 +1,18 @@
 import { IStudent } from '@/entities/models/student.interface'
 import { IStudentRepository } from '../student.repository.interface'
-import { Repository } from 'typeorm'
+import { EntityManager, Repository } from 'typeorm'
 import { Student } from '@/entities/student.entity'
 import { appDataSource } from '@/lib/typeorm/typeorm'
 
 export class StudentRepository implements IStudentRepository {
   private repository: Repository<Student>
 
-  constructor() {
-    this.repository = appDataSource.getRepository(Student)
+  constructor(transactionManager?: EntityManager) {
+    if (transactionManager) {
+      this.repository = transactionManager.getRepository(Student)
+    } else {
+      this.repository = appDataSource.getRepository(Student)
+    }
   }
 
   async findAll(page: number, limit: number): Promise<IStudent[]> {
