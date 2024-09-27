@@ -4,7 +4,7 @@ import { IAuthenticationRepository } from '@/repositories/authentication.interfa
 export class AuthenticateUseCase {
   constructor(private AuthenticationRepository: IAuthenticationRepository) {}
 
-  async handler(Authenticate: IAuthentication): Promise<string | null> {
+  async handler(Authenticate: IAuthentication): Promise<object | null> {
     return this.AuthenticationRepository.authenticate(Authenticate)
   }
 }
