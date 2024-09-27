@@ -1,9 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
-// import jwt from 'jsonwebtoken'
-// import { env } from '@/env'
 import { AuthenticationRepository } from '@/repositories/typeorm/authentication.repository'
 
-const FREE_ACCESS_ROUTES = ['/signin', '/register']
+const FREE_ACCESS_ROUTES = ['/signin', '/register', '/classrooms']
+
+const rolePermissions = {
+  admin: ['GET', 'POST', 'PUT', 'DELETE'],
+  teacher: ['GET', 'POST'],
+  student: ['GET'],
+}
 
 export const authenticateJWT = (
   request: Request,
@@ -25,8 +29,13 @@ export const authenticateJWT = (
   }
 
   try {
-    // jwt.verify(token, env.JWT_SECRET)
-    AuthenticationRepository.verifyToken(token)
+    const { userType } = AuthenticationRepository.verifyToken(token)
+
+    const isAllowed = rolePermissions[userType].includes(request.method)
+    if (!isAllowed) {
+      return response.status(401).json({ message: 'Não autorizado' })
+    }
+
     next()
   } catch (error) {
     if (error instanceof Error && error?.message === 'Token expired') {

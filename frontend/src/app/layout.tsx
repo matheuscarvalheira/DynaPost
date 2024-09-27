@@ -5,6 +5,8 @@ import { StyledComponentsRegistry } from "@/lib/registry";
 import { GlobalStyled } from "@/styles/global";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "styled-components";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function RootLayout({
   children,
@@ -19,6 +21,7 @@ export default function RootLayout({
             <AuthProvider>
               <GlobalStyled />
               {children}
+              <ToastContainer />
             </AuthProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>

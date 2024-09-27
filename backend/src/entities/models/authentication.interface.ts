@@ -4,3 +4,11 @@ export interface IAuthentication {
   password: string
   userType?: string
 }
+
+export interface IAuthenticationResponseData {
+  error: boolean
+  message: string
+  email?: string
+  id?: string
+  userType?: string
+}
