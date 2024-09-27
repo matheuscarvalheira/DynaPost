@@ -3,6 +3,13 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyled = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+  :root {
+    --toastify-color-error: ${({theme}) => theme.violetsAreBlue};
+    --toastify-color-warning: ${({theme}) => theme.violetsAreBlue};
+    --toastify-color-success: ${({theme}) => theme.violetsAreBlue};
+    --toastify-color-info: ${({theme}) => theme.violetsAreBlue};
+  }
+
   * {
     box-sizing: border-box;
     padding: 0;

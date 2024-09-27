@@ -2,13 +2,17 @@ import { Teacher } from '@/entities/teacher.entity'
 import { ITeacherRepository } from '../teacher.repository.interface'
 import { ITeacher } from '@/entities/models/teacher.interface'
 import { appDataSource } from '@/lib/typeorm/typeorm'
-import { Repository } from 'typeorm'
+import { EntityManager, Repository } from 'typeorm'
 
 export class TeacherRepository implements ITeacherRepository {
   private repository: Repository<Teacher>
 
-  constructor() {
-    this.repository = appDataSource.getRepository(Teacher)
+  constructor(transactionManager?: EntityManager) {
+    if (transactionManager) {
+      this.repository = transactionManager.getRepository(Teacher)
+    } else {
+      this.repository = appDataSource.getRepository(Teacher)
+    }
   }
 
   async findAll(page: number, limit: number): Promise<ITeacher[]> {
