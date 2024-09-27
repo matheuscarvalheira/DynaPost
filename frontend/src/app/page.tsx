@@ -1,11 +1,11 @@
 "use client";
 
-import {EditPostTemplate} from "@/templates/edit-post";
+import { HomeTemplate } from "@/templates/home";
 
 export default function Home() {
   return (
     <div>
-      <EditPostTemplate/>
+      <HomeTemplate/>
     </div>
   );
 }

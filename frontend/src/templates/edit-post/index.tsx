@@ -16,8 +16,9 @@ export const EditPostTemplate: FC = () => {
     const dropdownItemValues = ['option1', 'option2', 'option3'];
 
     return (
+        <>
+        <Header/>
         <S.Main>
-            <Header/>
             <Modal isopen={true} onClose={() => {}} >
             <S.Dropdown items={dropdownItemValues} />
             <S.Input placeholder='Titulo da Postagem' />
@@ -28,5 +29,7 @@ export const EditPostTemplate: FC = () => {
             </S.WrapperButton>
             </Modal>
         </S.Main>
+        </>
+        
     )
 }
