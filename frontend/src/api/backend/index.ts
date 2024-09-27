@@ -6,7 +6,12 @@ export function getApiClient(ctx?:never): AxiosInstance{
     const api = axios.create({
         baseURL: 'http://localhost:3001'
     })
-    
+
+    api.interceptors.request.use(config => {
+      console.log('Request', config)
+      return config
+    })
+      
     api.interceptors.response.use(
         (response) => {
           return response;

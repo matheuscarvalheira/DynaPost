@@ -1,10 +1,9 @@
 export interface AuthContextProps{
-    register: ({name, email, password, classrooms, userType}: RegisterProps) => Promise<RegisteResult>,
+    register: ({ name, email, password, classrooms, userType }: RegisterProps) => Promise<RegisteResult>,
     signIn: ({ email, password }: SignInProps)=> Promise<SignResult>,
     logOut: () => void,
     userId: string,
     userType: string,
-    getClassrooms: () => Promise<Classrooms>
 }
 
 export interface AuthProviderProps{
@@ -40,5 +39,3 @@ export interface Classroom {
     createdAt: string;
     modifiedAt: string;
 }
-
-export type Classrooms = Classroom[]
