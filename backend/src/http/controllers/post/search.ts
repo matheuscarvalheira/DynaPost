@@ -9,9 +9,11 @@ export async function search(req: Request, res: Response) {
 
   const { q } = searchBodySchema.parse(req.query)
 
+  const { classroom_id } = req.params
+
   const searchUseCase = makeSearchUseCase()
 
-  const results = await searchUseCase.handler(q)
+  const results = await searchUseCase.handler({ query: q, classroom_id })
 
   return res.status(200).json(results)
 }

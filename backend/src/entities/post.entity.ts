@@ -10,6 +10,7 @@ import { IPost } from './models/post.interface'
 import { PostTeacher } from './post-teacher.entity'
 import { PostClassroom } from './post-classroom.entity'
 import { env } from '@/env'
+import { PostStudent } from './post-student.entity'
 
 @Entity('post')
 export class Post implements IPost {
@@ -55,6 +56,9 @@ export class Post implements IPost {
 
   @OneToMany(() => PostTeacher, (postTeacher) => postTeacher.post)
   postTeachers: PostTeacher[]
+
+  @OneToMany(() => PostStudent, (postStudent) => postStudent.post)
+  postStudents: PostStudent[]
 
   @OneToMany(() => PostClassroom, (postClassroom) => postClassroom.post)
   postClassrooms: PostClassroom[]
