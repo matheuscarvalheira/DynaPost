@@ -7,21 +7,34 @@ import { Modal } from "@/components/modal-new";
 import { Form } from "@/components/form";
 
 export const FeedTemplate: FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [createPostModalOpen, setCreatePostModalOpen] = useState(false);
+  const [viewPostModalOpen, setViewPostModalOpen] = useState(false);
+  const [editPostModalOpen, setEditPostModalOpen] = useState(false);
 
   return (
     <S.Feed>
-      <Modal isOpen={modalOpen} handleOpen={setModalOpen}>
+      <Modal isOpen={createPostModalOpen} handleOpen={setCreatePostModalOpen}>
         <Form />
       </Modal>
+
+      <Modal isOpen={viewPostModalOpen} handleOpen={setViewPostModalOpen}>
+        <Post/>
+      </Modal>
+
+      <Modal isOpen={editPostModalOpen} handleOpen={setEditPostModalOpen}>
+        <Form/>
+      </Modal>
+
       <Header/>
+
       <S.FeedList>
-        <Post />
-        <Post />
-        <Post />
+        <Post onClick={() => setViewPostModalOpen(true)} />
+        <Post onClick={() => setViewPostModalOpen(true)} />
+        <Post onClick={() => setViewPostModalOpen(true)} />
       </S.FeedList>
+
       <S.ButtonContainer>
-        <Button buttonType="open-modal" onClick={() => setModalOpen(true)}/>
+        <Button buttonType="open-modal" onClick={() => setCreatePostModalOpen(true)} />
       </S.ButtonContainer>
     </S.Feed>
   )
