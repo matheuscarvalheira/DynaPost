@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { TextareaProps } from './props';
-import { TextareaWrapper, StyledTextarea } from './styles';
+import * as S from "./styles"
 
 export const Textarea = ({ placeholder = 'Digite', className }: TextareaProps) => {
   const [inputValue, setInputValue] = useState('');
@@ -11,12 +11,12 @@ export const Textarea = ({ placeholder = 'Digite', className }: TextareaProps) =
   };
 
   return (
-    <TextareaWrapper className={className}>
-      <StyledTextarea 
+    <S.TextareaWrapper className={className}>
+      <S.StyledTextarea 
         value={inputValue} 
         onChange={handleChange} 
         placeholder={placeholder} 
       />
-    </TextareaWrapper>
+    </S.TextareaWrapper>
   );
 };
