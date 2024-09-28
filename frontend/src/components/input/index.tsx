@@ -1,8 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { InputProps } from './props';
-import { InputWrapper, StyledInput, SearchIcon } from './styles';
-import { FaSearch } from 'react-icons/fa';
+import * as S from './styles';
 
 export const Input = ({ placeholder = 'Digite', showIcon = false, ...props }: InputProps) => {
   const [inputValue, setInputValue] = useState('');
@@ -12,19 +11,17 @@ export const Input = ({ placeholder = 'Digite', showIcon = false, ...props }: In
   };
 
   return (
-    <InputWrapper>
+    <S.InputContainer>
       {showIcon && (
-        <SearchIcon>
-          <FaSearch />
-        </SearchIcon>
+        <S.SearchIcon src="./svg/search-icon.svg" />
       )}
-      <StyledInput 
+      <S.Input 
         value={inputValue} 
         onChange={handleChange} 
         placeholder={placeholder} 
         $showIcon={showIcon}
         {...props}
       />
-    </InputWrapper>
+    </S.InputContainer>
   );
 };

@@ -1,22 +1,19 @@
 import styled from 'styled-components';
 
-export const InputWrapper = styled.div`
+export const InputContainer = styled.div`
   position: relative;
 `;
 
-export const StyledInput = styled.input<{ $showIcon: boolean }>`
-  padding: 20px;
-  border-radius: 50px;
-  width: 100%;
-  max-width: 300px;
-  height: 30px;
+export const Input = styled.input<{ $showIcon: boolean }>`
   background-color: ${({theme}) => theme.greenCharleson};
   color: ${({theme}) => theme.white};
-  padding-left: ${({ $showIcon }) => ($showIcon ? '40px' : '10px')};
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  border-radius: 15px;
+  width: 100%;
+  padding-left: ${({ $showIcon }) => ($showIcon ? '40px' : '20px')};
 `;
 
-export const SearchIcon = styled.div`
+export const SearchIcon = styled.img`
   position: absolute;
   left: 10px;
   top: 50%;

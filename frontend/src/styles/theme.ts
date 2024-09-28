@@ -2,6 +2,7 @@ import 'styled-components';
 
 export const theme = {
   black: '#000',
+  blackOpacity: 'rgba(0, 0, 0, 0.5)',
   blackRaisin: '#202024',
   greenCharleson: '#29292C',
   arsenic: '#404045',

@@ -1,9 +1,9 @@
 'use-client';
 import { ReactNode, useState } from "react";
-import { Modal } from "../modal";
 import { Textarea } from "../textarea";
-import { Input } from "../input";
-import { InputStyle } from "./styles";
+import * as S from './styles'
+import { Dropdown } from "../dropdown";
+import { Button } from "../button";
 
 
 export const Form = (): ReactNode => {
@@ -18,28 +18,24 @@ export const Form = (): ReactNode => {
     }
 
   return (
-    <div>
-        <Modal isopen={true} onClose={() => {}} 
-        children={ 
-            <div>
-                <InputStyle>
-                    <Input 
-                        placeholder="Selecione a turma" 
-                        value={inputValue} 
-                        onChange={handleInputChange} />
-                    <Input 
-                        placeholder="Título" 
-                        value={inputValue} 
-                        onChange={handleInputChange} />
-                    <Textarea 
-                        placeholder="Conteúdo" 
-                        value={textAreaValue} 
-                        onChange={handleTextAreaChange} /> 
-                </InputStyle>
-            </div>
-            } />
-        
+    <S.Form>
+        <S.Container>
+            <Dropdown items={['Turma 1', 'Turma 2', 'Turma 3']}/>
 
-    </div>
+            <S.Input 
+                placeholder="Título" 
+                value={inputValue} 
+                onChange={handleInputChange} />
+
+            <Textarea 
+                placeholder="Conteúdo" 
+                value={textAreaValue} 
+                onChange={handleTextAreaChange} /> 
+
+            <S.ButtonContainer>
+                <S.Button text="Publicar" />
+            </S.ButtonContainer>
+        </S.Container>
+    </S.Form>
   )
 }

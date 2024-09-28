@@ -11,12 +11,12 @@ export const Textarea = ({ placeholder = 'Digite', className }: TextareaProps) =
   };
 
   return (
-    <S.TextareaWrapper className={className}>
-      <S.StyledTextarea 
+    <S.TextareaContainer className={className}>
+      <S.Textarea 
         value={inputValue} 
         onChange={handleChange} 
         placeholder={placeholder} 
       />
-    </S.TextareaWrapper>
+    </S.TextareaContainer>
   );
 };
