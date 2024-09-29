@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
 import { FeedTemplate } from "@/templates/feed"
 
-export default function Login() {
+export default function Feed() {
     return (
         <>
             <FeedTemplate />

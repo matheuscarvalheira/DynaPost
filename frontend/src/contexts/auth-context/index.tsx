@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from "react"
-import { AuthContextProps, AuthProviderProps, RegisteResult, RegisterProps, SignInProps, SignResult } from "./props"
+import { AuthContextProps, AuthProviderProps, RegisteResult, RegisterProps, SignInProps, SignResult } from "./types"
 import { destroyCookie, parseCookies, setCookie } from "nookies"
 import { api } from "@/api/backend"
 import { usePathname, useRouter} from "next/navigation"
 
-const FREE_ACCESS_PATHNAMES = ['/', '/feed', '/login', '/register', '/classes', '/edit-post', '/createpost']
+const FREE_ACCESS_PATHNAMES = ['/login', '/register']
+
 
 export const AuthContext = createContext({} as AuthContextProps)
 
@@ -17,6 +18,20 @@ export function AuthProvider({ children }: AuthProviderProps){
     const [userType , setUserType] = useState('')
 
     useEffect(()=>{
+
+        async function fetchUser(token: string) {
+            try {
+                const { data } = await api.get(`authentication/${token}`)
+                const { userId, userType } = data
+                setUserId(userId)
+                setUserType(userType)
+            } catch (error) {
+                console.error('Failed to get User data:', error)
+                delete api.defaults.headers.common["Authorization"]
+                router.push('/login')
+            }    
+        }
+
         const accessFree = FREE_ACCESS_PATHNAMES.includes(pathname)
         if (!accessFree) {
             const { 'DynaPost.Token': token } = parseCookies()
@@ -24,8 +39,11 @@ export function AuthProvider({ children }: AuthProviderProps){
                 delete api.defaults.headers.common["Authorization"]
                 router.push('/login')
             }
+            if (userId.trim() === '') {
+                fetchUser(token);
+            }
         }
-    }, [pathname])
+    }, [pathname, router])
 
     async function register({name, email, password, classrooms, userType}: RegisterProps): Promise<RegisteResult>{
         try {

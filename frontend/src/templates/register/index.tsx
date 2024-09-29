@@ -42,8 +42,22 @@ export const RegisterTemplate: FC = () => {
         const name = form.get('name')?.toString()
         const email = form.get('email')?.toString()
         const password = form.get('password')?.toString()
+        const repeatPassword = form.get('repeat-password')?.toString()
         const userType = form.get('userType')?.toString()
         const classrooms = Array.from(form.getAll('subjects')) as string[];
+
+        if (password !== repeatPassword) {
+            return toast.error("Senhas não são iguais" as ToastContent<unknown>, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            })
+        }
 
         register({name, email, password, classrooms, userType})
             .then((result => {

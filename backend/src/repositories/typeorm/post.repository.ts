@@ -3,15 +3,18 @@ import { IPostRepository } from '../post.repository.interface'
 import { EntityManager, Like, Repository } from 'typeorm'
 import { Post } from '@/entities/post.entity'
 import { appDataSource } from '@/lib/typeorm/typeorm'
+import { PostClassroom } from '@/entities/post-classroom.entity'
 
 export class PostRepository implements IPostRepository {
   private repository: Repository<Post>
+  private postClassroomRepository: Repository<PostClassroom>
 
   constructor(transactionManager?: EntityManager) {
     if (transactionManager) {
       this.repository = transactionManager.getRepository(Post)
     } else {
       this.repository = appDataSource.getRepository(Post)
+      this.postClassroomRepository = appDataSource.getRepository(PostClassroom)
     }
   }
 
@@ -32,10 +35,26 @@ export class PostRepository implements IPostRepository {
     })
   }
 
-  async search(query: string): Promise<IPost[] | null> {
-    return this.repository.find({
+  async search({
+    query,
+    classroom_id,
+  }: {
+    query: string
+    classroom_id: string
+  }): Promise<IPost[] | undefined> {
+    const allPosts = await this.repository.find({
       where: [{ title: Like(`%${query}%`) }, { body: Like(`%${query}%`) }],
     })
+
+    if (allPosts.length > 0) {
+      const filteredPosts = allPosts.filter(
+        async (post) =>
+          await this.postClassroomRepository.find({
+            where: { post_id: post.id, classroom_id },
+          }),
+      )
+      return filteredPosts
+    }
   }
 
   async findById(id: string): Promise<IPost | null> {

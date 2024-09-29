@@ -22,6 +22,12 @@ export const errorHandlerMap: ErrorHandlerMap = {
   QueryFailedError: (error, _, res) => {
     return res.status(400).json({ message: error.message })
   },
+  JsonWebTokenError: (error, _, res) => {
+    return res.status(404).json({ message: error.message })
+  },
+  SyntaxError: (error, _, res) => {
+    return res.status(404).json({ message: error.message })
+  },
   Error: (error, _, res) => {
     return res.status(400).json({ message: error.message })
   },

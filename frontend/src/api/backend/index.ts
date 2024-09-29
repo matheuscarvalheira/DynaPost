@@ -1,12 +1,18 @@
 import axios, { AxiosInstance } from "axios";
 import { destroyCookie, parseCookies } from "nookies";
+import "dotenv/config";
 
 export function getApiClient(ctx?:never): AxiosInstance{
-    
+
     const api = axios.create({
-        baseURL: 'http://localhost:3001'
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_URL
     })
-    
+
+    api.interceptors.request.use(config => {
+      console.log('Request', config)
+      return config
+    })
+      
     api.interceptors.response.use(
         (response) => {
           return response;
@@ -28,6 +34,8 @@ export function getApiClient(ctx?:never): AxiosInstance{
     );
 
     const { 'DynaPost.Token': token } = parseCookies(ctx)
+
+    console.log(token)
     
     if (token) {
         api.defaults.headers['Authorization'] = `Bearer ${token}`
