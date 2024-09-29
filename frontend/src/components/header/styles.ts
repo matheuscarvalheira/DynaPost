@@ -8,9 +8,16 @@ export const Header = styled.header`
   padding: 20px 0;
   display: flex;
   justify-content: center;
+  position: relative;
 
   @media (max-width: 600px) {
     padding: 15px 0;
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    top: 5%;
   }
 `
 
