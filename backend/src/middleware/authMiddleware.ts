@@ -4,8 +4,7 @@ import { AuthenticationRepository } from '@/repositories/typeorm/authentication.
 const FREE_ACCESS_ROUTES = ['/signin', '/register', '/classrooms']
 
 const rolePermissions = {
-  admin: ['GET', 'POST', 'PUT', 'DELETE'],
-  teacher: ['GET', 'POST'],
+  teacher: ['GET', 'POST', 'PUT', 'DELETE'],
   student: ['GET'],
 }
 
