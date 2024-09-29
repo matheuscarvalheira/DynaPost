@@ -4,7 +4,7 @@ import { destroyCookie, parseCookies, setCookie } from "nookies"
 import { api } from "@/api/backend"
 import { usePathname, useRouter} from "next/navigation"
 
-const FREE_ACCESS_PATHNAMES = ['/', '/feed', '/login', '/register', '/classes', '/edit-post', '/createpost']
+const FREE_ACCESS_PATHNAMES = ['/login', '/register']
 
 export const AuthContext = createContext({} as AuthContextProps)
 
@@ -25,7 +25,7 @@ export function AuthProvider({ children }: AuthProviderProps){
                 router.push('/login')
             }
         }
-    }, [pathname])
+    }, [pathname, router])
 
     async function register({name, email, password, classrooms, userType}: RegisterProps): Promise<RegisteResult>{
         try {

@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/nookies": "^2.0.3",
     "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
     "frontend": "file:",
     "next": "14.2.10",
     "nookies": "^2.5.2",

@@ -24,7 +24,7 @@ export const LoginTemplate: FC = () => {
             .then(result => {
                 const { signInOk, message } = result
                 if (signInOk) {
-                    router.push('/')
+                    router.push('/classes')
                 } else {
                     toast.error(message as ToastContent<unknown>, {
                         position: "top-right",
