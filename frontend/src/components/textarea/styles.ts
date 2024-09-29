@@ -18,4 +18,10 @@ export const Textarea = styled.textarea`
   height: 200px;
   color: ${({theme}) => theme.white};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 600px) {
+    padding: 10px 15px;
+    font-size: 15px;
+    height: 250px;
+  }
 `;

@@ -3,7 +3,7 @@ import { Post } from "@/components/post";
 import * as S from './styles';
 import { Header } from "@/components/header";
 import { Button } from "@/components/button";
-import { Modal } from "@/components/modal-new";
+import { Modal } from "@/components/modal";
 import { Form } from "@/components/form";
 
 export const FeedTemplate: FC = () => {
@@ -18,7 +18,7 @@ export const FeedTemplate: FC = () => {
       </Modal>
 
       <Modal isOpen={viewPostModalOpen} handleOpen={setViewPostModalOpen}>
-        <Post/>
+        <Post isOnModal={true} />
       </Modal>
 
       <Modal isOpen={editPostModalOpen} handleOpen={setEditPostModalOpen}>

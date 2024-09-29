@@ -56,6 +56,10 @@ export const Class = styled.p`
   }
 `;
 
+export const EditButton = styled.img`
+  float: right;
+`
+
 export const ContentContainer = styled.div``;
 
 export const Title = styled.p`

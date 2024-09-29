@@ -11,6 +11,11 @@ export const Input = styled.input<{ $showIcon: boolean }>`
   border-radius: 15px;
   width: 100%;
   padding-left: ${({ $showIcon }) => ($showIcon ? '40px' : '20px')};
+
+  @media (max-width: 600px) {
+    padding: 10px 15px;
+    font-size: 15px;
+  }
 `;
 
 export const SearchIcon = styled.img`

@@ -1,35 +1,39 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
-export const ModalBackground = styled.div<{ isopen: boolean }>`
-  display: ${({ isopen }) => (isopen ? 'flex' : 'none')};
+export const Modal = styled.div<{ $open: boolean }>`
+  background-color: ${({theme}) => theme.blackOpacity};
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
+  z-index: 2;
+  display: ${({$open}) => $open ? 'flex' : 'none'};
   align-items: center;
-  z-index: 1000;
-`;
+  justify-content: center;
+`
 
-export const ModalContent = styled.div`
-  background-color: #202024;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: white;
-  max-width: 500px;
+export const ModalBox = styled.div`
+  width: 850px;
+  height: 500px;
+  background-color: ${({theme}) => theme.blackRaisin};
+  border-radius: 20px;
+  padding: 30px;
+
+  @media (max-width: 900px) {
+    width: 90%;
+    height: 550px;
+    padding: 25px;
+  }
+`
+
+export const Header = styled.div`
   width: 100%;
-  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 `;
 
-export const CloseModal = styled.div`
-    position: absolute;
-    cursor: pointer;
-    top: 10px;
-    right: 10px; 
-    color: white;
-    `;
-
-
+export const CloseIcon = styled.img`
+  cursor: pointer;
+`;

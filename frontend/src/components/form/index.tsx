@@ -3,7 +3,6 @@ import { ReactNode, useState } from "react";
 import { Textarea } from "../textarea";
 import * as S from './styles'
 import { Dropdown } from "../dropdown";
-import { Button } from "../button";
 
 
 export const Form = (): ReactNode => {
@@ -33,6 +32,7 @@ export const Form = (): ReactNode => {
                 onChange={handleTextAreaChange} /> 
 
             <S.ButtonContainer>
+                <S.Button buttonType="delete-post" text="Deletar" />
                 <S.Button text="Publicar" />
             </S.ButtonContainer>
         </S.Container>
