@@ -42,9 +42,13 @@ export const Classes: FC = () => {
     return (
         <S.Main>
             <S.Title>Escolha uma turma</S.Title>
-            <S.ClassList>
-                {classrooms.map(classroom => <li key={classroom.id}><a href={`feed?classroomId=${classroom.id}`}>{classroom.name}</a></li>)}
-            </S.ClassList>
+            {
+                !loading && (
+                    <S.ClassList>
+                        {classrooms.map(classroom => <li key={classroom.id}><a href={`feed?classroomId=${classroom.id}`}>{classroom.name}</a></li>)}
+                    </S.ClassList>
+                )
+            }
         </S.Main>
     )
 }
