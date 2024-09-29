@@ -28,7 +28,9 @@ export const authenticateJWT = (
   }
 
   try {
-    const { userType } = AuthenticationRepository.verifyToken(token) as { userType: 'teacher' | 'student'; }
+    const { userType } = AuthenticationRepository.verifyToken(token) as {
+      userType: 'teacher' | 'student'
+    }
 
     const isAllowed = rolePermissions[userType].includes(request.method)
     if (!isAllowed) {
