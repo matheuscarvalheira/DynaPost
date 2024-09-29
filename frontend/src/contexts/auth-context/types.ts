@@ -1,5 +1,5 @@
 export interface AuthContextProps{
-    register: ({name, email, password, classrooms, userType}: RegisterProps) => Promise<RegisteResult>,
+    register: ({ name, email, password, classrooms, userType }: RegisterProps) => Promise<RegisteResult>,
     signIn: ({ email, password }: SignInProps)=> Promise<SignResult>,
     logOut: () => void,
     userId: string,
@@ -31,4 +31,11 @@ export interface SignInProps{
 export interface SignResult{
     signInOk: boolean,
     message: string | undefined | unknown,
+}
+
+export interface Classroom {
+    id: string;
+    name: string;
+    createdAt: string;
+    modifiedAt: string;
 }

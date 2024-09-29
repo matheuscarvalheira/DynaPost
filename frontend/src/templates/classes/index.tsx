@@ -1,36 +1,49 @@
 import { FC, useContext, useEffect, useState } from "react"
 import * as S from "./styles"
-import { Option } from "@/components/radio-buttons/props";
-import { AuthContext } from "@/contexts/auth-context"
-import { api } from "@/api/backend";
-
-interface IClassroom {
-    id: string,
-    name: string,
-}
+import { BackendContext } from "@/contexts/backend-context"
+import { Classroom } from "@/contexts/backend-context/types"
+import { toast, ToastContent } from "react-toastify"
 
 export const Classes: FC = () => {
-    const [subjects, setSubjects] = useState<Option[]>([]);
-    const { userId, userType } = useContext(AuthContext)
+
+    const { getClassrooms } = useContext(BackendContext);
+    const [classrooms, setClassrooms] = useState<Classroom[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchSubjects = async () => {
-        try {
-            const { data } = await api.get(`classrooms/${userType}s/${userId}`);
-            setSubjects(data.map(({ id, name }: IClassroom) => ({ value: id, label: name })));
-        } catch (error) {
-            console.error('Error fetching classrooms:', error);
-        }
-        };
+        async function fetchClassrooms() {
+            setLoading(true);
+            const { getClassroomsOk, message, classrooms} = await getClassrooms();
 
-        fetchSubjects();
-    }, [userId, userType]);
+            if (getClassroomsOk) {
+                if (Array.isArray(classrooms)) {
+                    setClassrooms(classrooms);
+                } else {
+                    console.error("Erro: fetchedClassrooms não é um array", classrooms);
+                }    
+            } else {
+                toast.error(message as ToastContent<unknown>, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                  });
+            }
+        }
+
+        fetchClassrooms();
+        setLoading(false);
+    }, [getClassrooms]);
 
     return (
         <S.Main>
             <S.Title>Escolha uma turma</S.Title>
             <S.ClassList>
-                {subjects.map(item => <li key={item.value}><a href={`feed/${item.value}`}>{item.label}</a></li>)}
+                {classrooms.map(classroom => <li key={classroom.id}><a href={`feed?classroomId=${classroom.id}`}>{classroom.name}</a></li>)}
             </S.ClassList>
         </S.Main>
     )

@@ -7,6 +7,7 @@ import { theme } from "@/styles/theme";
 import { ThemeProvider } from "styled-components";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BackendProvider } from "@/contexts/backend-context";
 
 export default function RootLayout({
   children,
@@ -19,9 +20,11 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
             <AuthProvider>
-              <GlobalStyled />
-              {children}
-              <ToastContainer />
+              <BackendProvider>
+                <GlobalStyled />
+                {children}
+                <ToastContainer />
+              </BackendProvider>
             </AuthProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>

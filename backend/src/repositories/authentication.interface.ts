@@ -8,4 +8,5 @@ export interface IAuthenticationRepository {
   register(
     authentication: IAuthentication,
   ): Promise<IAuthenticationResponseData>
+  findById(id: string): Promise<IAuthentication | null>
 }
