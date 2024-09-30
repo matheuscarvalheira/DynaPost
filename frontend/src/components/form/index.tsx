@@ -2,7 +2,6 @@
 import { ReactNode, useState } from "react";
 import { Textarea } from "../textarea";
 import * as S from './styles'
-import { Dropdown } from "../dropdown";
 import { FormProps } from "./props";
 
 
@@ -20,8 +19,6 @@ export const Form = ({ currentPost }: FormProps): ReactNode => {
   return (
     <S.Form>
         <S.Container>
-            <Dropdown items={['Turma 1', 'Turma 2', 'Turma 3']}/>
-
             <S.Input 
                 placeholder="Título" 
                 value={inputValue} 
@@ -33,7 +30,7 @@ export const Form = ({ currentPost }: FormProps): ReactNode => {
                 onChange={handleTextAreaChange} /> 
 
             <S.ButtonContainer>
-                <S.Button buttonType="delete-post" text="Deletar" />
+                {currentPost ? <S.Button buttonType="delete-post" text="Deletar" /> : null}
                 <S.Button text="Publicar" />
             </S.ButtonContainer>
         </S.Container>
