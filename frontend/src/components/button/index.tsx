@@ -5,7 +5,7 @@ import { ButtonProps } from "./props";
 export const Button = ({text, onClick, buttonType, ...props}: ButtonProps): ReactNode => {
 
   return (
-    <S.Button buttonType={buttonType} onClick={onClick} {...props}>
+    <S.Button buttontype={buttonType} onClick={onClick} {...props}>
       {buttonType === 'open-modal' ?
         <S.PlusIcon />
       : text}

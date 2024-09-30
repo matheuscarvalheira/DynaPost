@@ -5,7 +5,6 @@ import * as S from "./styles"
 import { AuthContext } from "@/contexts/auth-context";
 import { useRouter } from "next/navigation";
 import {  toast, ToastContent } from 'react-toastify';
-import { theme } from "@/styles/theme";
 
 export const LoginTemplate: FC = () => {
 
@@ -44,8 +43,8 @@ export const LoginTemplate: FC = () => {
         <S.Main>
             <S.Title>Faça seu login</S.Title>
             <S.Form onSubmit={handleSubmit}>
-                <Input placeholder="Email" required type="email" name="email" autoComplete="off" />
-                <Input placeholder="Senha" required type="password" name="password" autoComplete="off" />
+                <Input placeholder="Email" required type="email" name="email" autocomplete="off" />
+                <Input placeholder="Senha" required type="password" name="password" autocomplete="off" />
                 <Button type="submit" text="Login"/>
             </S.Form>
         </S.Main>

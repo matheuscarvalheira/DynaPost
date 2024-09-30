@@ -43,7 +43,7 @@ export function AuthProvider({ children }: AuthProviderProps){
                 fetchUser(token);
             }
         }
-    }, [pathname, router])
+    }, [pathname, router, userId])
 
     async function register({name, email, password, classrooms, userType}: RegisterProps): Promise<RegisteResult>{
         try {

@@ -87,10 +87,10 @@ export const RegisterTemplate: FC = () => {
                 <S.RadioContainer>
                     <ButtonGroup required groupName="userType" options={USER_OPTIONS}/>
                 </S.RadioContainer>
-                <Input placeholder="Nome" type="text" name="name" autoComplete="off" />
-                <Input placeholder="Email" type="email" name="email" autoComplete="off" required />
-                <Input placeholder="Senha" type="password" name="password" autoComplete="off" required />
-                <Input placeholder="Repita senha" type="password" name="repeat-password" autoComplete="off" required />
+                <Input placeholder="Nome" type="text" name="name" autocomplete="off" />
+                <Input placeholder="Email" type="email" name="email" autocomplete="off" required />
+                <Input placeholder="Senha" type="password" name="password" autocomplete="off" required />
+                <Input placeholder="Repita senha" type="password" name="repeat-password" autocomplete="off" required />
 
                 <S.SubTitle>Matérias</S.SubTitle>
                 <S.RadioContainer>

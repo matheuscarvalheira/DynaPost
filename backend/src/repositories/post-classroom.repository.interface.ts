@@ -1,7 +1,9 @@
-import { IPostClassroom } from '@/entities/models/post-classroom.interface'
-import { IPost } from '@/entities/models/post.interface'
+import {
+  IPostClassroom,
+  IPostClassroomReturn,
+} from '@/entities/models/post-classroom.interface'
 
 export interface IPostClassroomRepository {
   create(postTeacher: IPostClassroom): Promise<IPostClassroom>
-  findPostsByClassroom(id: string): Promise<(IPost | null)[]>
+  findPostsByClassroom(id: string): Promise<(IPostClassroomReturn | null)[]>
 }

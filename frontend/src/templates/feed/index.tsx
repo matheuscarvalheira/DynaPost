@@ -64,7 +64,7 @@ export const FeedTemplate: FC = () => {
 
       fetchPosts();
       setLoading(false);
-  }, [getAllPosts, search]);
+  }, [getAllPosts, search, searchParams]);
 
   return (
     <S.Feed>

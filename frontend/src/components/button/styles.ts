@@ -2,8 +2,8 @@
 
 import styled from "styled-components";
 
-export const Button = styled.button<{ buttonType?: 'open-modal' | 'delete-post' }>`
-  background-color: ${({theme, buttonType}) => buttonType === 'delete-post' ? theme.arsenic : theme.indigoLavander};
+export const Button = styled.button<{ buttontype?: 'open-modal' | 'delete-post' }>`
+  background-color: ${({theme, buttontype}) => buttontype === 'delete-post' ? theme.arsenic : theme.indigoLavander};
   padding: 10px 25px;
   border-radius: 15px;
   margin: 10px;
