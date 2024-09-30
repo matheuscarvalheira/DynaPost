@@ -25,10 +25,10 @@ export const Dropdown = ({items}: DropdownProps): ReactNode => {
 
   return (
     <S.Dropdown>
-      <S.Header onClick={handleDropdown} dropdownHeight={dropdownHeight}>
+      <S.Header onClick={handleDropdown} dropdownheight={dropdownHeight}>
         <S.CurrentText current={current}>{current}</S.CurrentText>
       </S.Header>
-      <S.OptionsList dropdownHeight={dropdownHeight}>
+      <S.OptionsList dropdownheight={dropdownHeight}>
         <S.ListWrapper ref={wrapperRef}>
 
         {items.map((item, index) => (

@@ -9,7 +9,7 @@ export const Dropdown = styled.div`
   margin: 10px 0;
 `
 
-export const Header = styled.div<{dropdownHeight: number}>`
+export const Header = styled.div<{dropdownheight: number}>`
   background-color: ${({theme}) => theme.greenCharleson};
   border: 1px solid ${({theme}) => theme.greenCharleson};
   padding: 10px 20px;
@@ -22,20 +22,20 @@ export const Header = styled.div<{dropdownHeight: number}>`
     content: '';
     width: 10px;
     height: 1px;
-    background-color: ${({theme, dropdownHeight}) => dropdownHeight === 0 ? theme.grayGranite : theme.violetsAreBlue};
+    background-color: ${({theme, dropdownheight}) => dropdownheight === 0 ? theme.grayGranite : theme.violetsAreBlue};
     position: absolute;
     display: block;
     transition: right 0.4s ease, color 0.4s ease;
   }
 
   &:before {
-    right: ${({dropdownHeight}) => dropdownHeight === 0 ? '20px' : '23px'};
+    right: ${({dropdownheight}) => dropdownheight === 0 ? '20px' : '23px'};
     transform: rotate(-45deg);
     top: 17px;
   }
 
   &:after {
-   right: ${({dropdownHeight}) => dropdownHeight === 0 ? '27px' : '23px'};
+   right: ${({dropdownheight}) => dropdownheight === 0 ? '27px' : '23px'};
    transform: rotate(45deg);
    top: 17px;
   }
@@ -50,8 +50,8 @@ export const CurrentText = styled.p<{current: string}>`
   font-size: 15px;
 `
 
-export const OptionsList = styled.div<{dropdownHeight: number}>`
-  height:${({dropdownHeight}) => dropdownHeight}px;
+export const OptionsList = styled.div<{dropdownheight: number}>`
+  height:${({dropdownheight}) => dropdownheight}px;
   overflow: hidden;
   transition: height 0.3s ease;
   position: absolute;
