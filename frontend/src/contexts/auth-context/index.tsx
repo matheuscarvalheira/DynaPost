@@ -33,20 +33,6 @@ export function AuthProvider({ children }: AuthProviderProps){
             }    
         }
 
-
-        async function fetchUser(token: string) {
-            try {
-                const { data } = await api.get(`authentication/${token}`)
-                const { userId, userType } = data
-                setUserId(userId)
-                setUserType(userType)
-            } catch (error) {
-                console.error('Failed to get User data:', error)
-                delete api.defaults.headers.common["Authorization"]
-                router.push('/login')
-            }    
-        }
-
         const accessFree = FREE_ACCESS_PATHNAMES.includes(pathname)
         if (!accessFree) {
             const { 'DynaPost.Token': token } = parseCookies()
