@@ -68,5 +68,6 @@ export interface Post {
     createdAt?: string,
     modifiedAt?: string,
     teacher_id?: string,
+    teacher_name?: string;
     classroom_id?: string,
 }

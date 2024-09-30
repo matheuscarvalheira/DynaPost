@@ -1902,7 +1902,7 @@ babel-preset-jest@^29.6.3:
 "backend@file:backend":
   version "1.0.0"
   dependencies:
-    backend "file:../../../../Library/Caches/Yarn/v6/npm-backend-1.0.0-31d1a22a-df17-486e-87cf-ec2b9dccd4f8-1727643780316/node_modules/backend"
+    backend "file:../../../../Library/Caches/Yarn/v6/npm-backend-1.0.0-03ca6e2e-673f-47ed-ab5d-f68b2b98104d-1727654060807/node_modules/backend"
     cors "2.8.5"
     dotenv "16.4.5"
     express "4.19.2"
@@ -2589,14 +2589,9 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dotenv@16.4.5, dotenv@^16.0.3:
+dotenv@16.4.5, dotenv@^16.0.3, dotenv@^16.4.5:
   version "16.4.5"
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.4.5.tgz"
-  integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
-
-dotenv@^16.4.5:
-  version "16.4.5"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
   integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
 
 "dynapost@file:.":
@@ -2605,7 +2600,7 @@ dotenv@^16.4.5:
     "@types/express" "^4.17.21"
     "@types/jsonwebtoken" "^9.0.6"
     bcryptjs "^2.4.3"
-    dynapost "file:../../../../Library/Caches/Yarn/v6/npm-dynapost-1.0.0-491b76f6-9b2d-4001-84d8-c14dc9dcbb54-1727643780314/node_modules/dynapost"
+    dynapost "file:../../../../Library/Caches/Yarn/v6/npm-dynapost-1.0.0-7f911ba0-e4ff-4780-a93b-eacb3b023cc8-1727654060702/node_modules/dynapost"
     jsonwebtoken "^9.0.2"
 
 eastasianwidth@^0.2.0:
@@ -3437,7 +3432,8 @@ fresh@0.5.2:
   dependencies:
     "@types/nookies" "^2.0.3"
     axios "^1.7.7"
-    frontend "file:../../../../Library/Caches/Yarn/v6/npm-frontend-0.1.0-beb14eea-c56b-41bd-b459-ed3d5ca403e5-1727643780315/node_modules/frontend"
+    dotenv "^16.4.5"
+    frontend "file:../../../../Library/Caches/Yarn/v6/npm-frontend-0.1.0-41124257-ad6a-4a9c-851e-ef79314d1874-1727654060806/node_modules/frontend"
     next "14.2.10"
     nookies "^2.5.2"
     react "^18"

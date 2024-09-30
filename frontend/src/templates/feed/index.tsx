@@ -9,6 +9,7 @@ import { BackendContext } from "@/contexts/backend-context";
 import { toast, ToastContent } from "react-toastify";
 import { Modal } from "@/components/modal";
 import { Form } from "@/components/form";
+import { AuthContext } from "@/contexts/auth-context";
 
 
 export const FeedTemplate: FC = () => {
@@ -18,6 +19,7 @@ export const FeedTemplate: FC = () => {
 
   const searchParams = useSearchParams()
   const { getAllPosts } = useContext(BackendContext);
+  const { userType } = useContext(AuthContext);
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -32,6 +34,7 @@ export const FeedTemplate: FC = () => {
           if (getAllPostsOk) {
               if (Array.isArray(posts)) {
                 setPosts(posts);
+                console.log(posts)
               } else {
                   console.error("Erro: fetchPosts não é um array", posts);
               }    
@@ -60,7 +63,7 @@ export const FeedTemplate: FC = () => {
       </Modal>
 
       <Modal isOpen={viewPostModalOpen} handleOpen={setViewPostModalOpen}>
-        <Post isOnModal={true} />
+        <Post isOnModal={true} userType={userType} />
       </Modal>
 
       <Modal isOpen={editPostModalOpen} handleOpen={setEditPostModalOpen}>
@@ -70,13 +73,21 @@ export const FeedTemplate: FC = () => {
       <Header/>
 
       <S.FeedList>
-        <Post onClick={() => setViewPostModalOpen(true)} />
-        <Post onClick={() => setViewPostModalOpen(true)} />
-        <Post onClick={() => setViewPostModalOpen(true)} />
+        {posts.map(post => (
+          <Post
+            key={post.id}
+            onClick={userType === 'teacher' ? () => setEditPostModalOpen(true) : () => setViewPostModalOpen(true)} userType={userType}
+            title={post.title}
+            body={post.body}
+            createdAt={post.createdAt}
+            modifiedAt={post.modifiedAt}
+            teacherName={post?.teacher_name}
+          />
+        ))}
       </S.FeedList>
 
       <S.ButtonContainer>
-        <Button buttonType="open-modal" onClick={() => setCreatePostModalOpen(true)} />
+        {userType === 'teacher' && <Button buttonType="open-modal" onClick={() => setCreatePostModalOpen(true)} />}
       </S.ButtonContainer>
     </S.Feed>
   )
