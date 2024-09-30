@@ -113,4 +113,10 @@ export class AuthenticationRepository implements IAuthenticationRepository {
       return { error: true, message: 'usuário não foi criado' }
     }
   }
+  async findById(id: string): Promise<IAuthentication | null> {
+    return this.repository.findOne({
+      where: { id },
+    })
+  }
+
 }

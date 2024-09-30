@@ -3,6 +3,8 @@ export interface IAuthentication {
   email: string
   password: string
   userType?: string
+  createdAt?: Date
+  modifiedAt?: Date
 }
 
 export interface IAuthenticationResponseData {

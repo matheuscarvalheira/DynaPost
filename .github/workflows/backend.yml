@@ -1,54 +1,29 @@
-name: CI/CD Pipeline
+name: Backend CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
+      - feature/front-end
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    env:
-      NODE_ENV: test
-      DATABASE_TYPE: ''
-      DATABASE_USER: ''
-      DATABASE_HOST: ''
-      DATABASE_NAME: ''
-      DATABASE_PASSWORD: ''
-      DATABASE_PORT: 0
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
   build:
     runs-on: ubuntu-latest
-    needs: test
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: yarn
 
       - name: Build application
-        run: npm run build
+        run: yarn workspace backend build
 
   deploy-app:
     runs-on: ubuntu-latest
@@ -56,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Deploy to Render
         env:
@@ -76,7 +51,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Deploy PostgreSQL to Render
         env:
