@@ -1,14 +1,14 @@
 import { Container, Post } from "@/components/post/styles";
 import styled from "styled-components";
 
-export const Home = styled.div`
+export const Feed = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 50px;
 `;
 
-export const Feed = styled.section`
+export const FeedList = styled.section`
   width: 750px;
   margin-top: 30px;
   background-color: ${({ theme }) => theme.blackRaisin};
@@ -55,3 +55,9 @@ export const Feed = styled.section`
     }
   }
 `;
+
+export const ButtonContainer = styled.div`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+`

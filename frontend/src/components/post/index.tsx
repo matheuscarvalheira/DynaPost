@@ -3,9 +3,9 @@ import React from 'react';
 import * as S from './styles';
 import { PostProps } from './props';
 
-export const Post = ({ className }: PostProps) => {
+export const Post = ({ className, onClick }: PostProps) => {
   return (
-    <S.Post className={className}>
+    <S.Post className={className} onClick={onClick}>
       <S.Container>
         <S.Header>
           <S.Profile>
