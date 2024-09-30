@@ -1,4 +1,4 @@
-import { createContext, use, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { AuthContextProps, AuthProviderProps, RegisteResult, RegisterProps, SignInProps, SignResult } from "./types"
 import { destroyCookie, parseCookies, setCookie } from "nookies"
 import { api } from "@/api/backend"
@@ -43,7 +43,7 @@ export function AuthProvider({ children }: AuthProviderProps){
                 fetchUser(token);
             }
         }
-    }, [pathname, router])
+    }, [pathname, router, userId])
 
     async function register({name, email, password, classrooms, userType}: RegisterProps): Promise<RegisteResult>{
         try {

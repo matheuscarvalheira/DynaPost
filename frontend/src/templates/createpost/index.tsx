@@ -21,10 +21,9 @@ export const CreatePostTemplate: FC = () => {
                         autocomplete="off"/>
                     <S.Textarea 
                         placeholder="Conteúdo" 
-                        value="" 
-                        onChange={handleChange}/>
-                    <S.Button 
-                    type="submit" text="Publicar"/>
+                        value={inputValue}
+                        onChange={handleChange} />
+                    <S.Button type="submit" text="Publicar"/>
                 </div>
             </S.Modal>
         </div>

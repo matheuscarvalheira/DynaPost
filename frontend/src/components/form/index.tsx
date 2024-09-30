@@ -19,8 +19,7 @@ export const Form = (): ReactNode => {
 
   return (
     <div>
-        <Modal isopen={true} onClose={() => {}} 
-        children={ 
+        <Modal isopen={true} onClose={() => {}}>
             <div>
                 <InputStyle>
                     <Input 
@@ -37,7 +36,8 @@ export const Form = (): ReactNode => {
                         onChange={handleTextAreaChange} /> 
                 </InputStyle>
             </div>
-            } />
+
+            </Modal>
         
 
     </div>

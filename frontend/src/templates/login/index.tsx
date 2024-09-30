@@ -5,7 +5,6 @@ import * as S from "./styles"
 import { AuthContext } from "@/contexts/auth-context";
 import { useRouter } from "next/navigation";
 import {  toast, ToastContent } from 'react-toastify';
-import { theme } from "@/styles/theme";
 
 export const LoginTemplate: FC = () => {
 
