@@ -82,7 +82,10 @@ export const FeedTemplate: FC = () => {
 
       <Header/>
 
+      <S.SearchInput showIcon={true} />
+
       <S.FeedList>
+        {posts.length === 0 && <S.Text>Nenhum post.</S.Text>}
         {posts.map(post => (
           <Post
             key={post.id}

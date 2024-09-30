@@ -1,3 +1,4 @@
+import { Input } from "@/components/input";
 import { Container, Post } from "@/components/post/styles";
 import styled from "styled-components";
 
@@ -7,6 +8,17 @@ export const Feed = styled.div`
   align-items: center;
   padding-bottom: 50px;
 `;
+
+export const SearchInput = styled(Input)`
+  width: 750px;
+  margin-top: 50px;
+  font-size: 15px;
+
+  @media (max-width: 800px) {
+    width: 90vw;
+    font-size: 14px;
+  }
+`
 
 export const FeedList = styled.section`
   width: 750px;
@@ -60,4 +72,13 @@ export const ButtonContainer = styled.div`
   position: fixed;
   bottom: 30px;
   right: 30px;
-`
+`;
+
+export const Text = styled.p`
+  font-size: 18px;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+`;
