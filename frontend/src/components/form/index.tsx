@@ -3,9 +3,10 @@ import { ReactNode, useState } from "react";
 import { Textarea } from "../textarea";
 import * as S from './styles'
 import { Dropdown } from "../dropdown";
+import { FormProps } from "./props";
 
 
-export const Form = (): ReactNode => {
+export const Form = ({ currentPost }: FormProps): ReactNode => {
     const [inputValue, setInputValue] = useState('');
     const [textAreaValue, setTextAreaValue] = useState('');
 

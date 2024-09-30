@@ -21,8 +21,18 @@ export const FeedTemplate: FC = () => {
   const { getAllPosts } = useContext(BackendContext);
   const { userType } = useContext(AuthContext);
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [currentPost, setCurrentPost] = useState<IPost>();
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+
+  const handleOpenPost = (post: IPost) => {
+    if (userType === 'teacher') {
+      setEditPostModalOpen(true);
+    } else {
+      setViewPostModalOpen(true);
+    }
+    setCurrentPost(post);
+  }
 
   useEffect(() => {
       async function fetchPosts() {
@@ -63,11 +73,11 @@ export const FeedTemplate: FC = () => {
       </Modal>
 
       <Modal isOpen={viewPostModalOpen} handleOpen={setViewPostModalOpen}>
-        <Post isOnModal={true} userType={userType} />
+        <Post isOnModal={true} userType={userType} currentPost={currentPost}/>
       </Modal>
 
       <Modal isOpen={editPostModalOpen} handleOpen={setEditPostModalOpen}>
-        <Form/>
+        <Form currentPost={currentPost}/>
       </Modal>
 
       <Header/>
@@ -76,12 +86,9 @@ export const FeedTemplate: FC = () => {
         {posts.map(post => (
           <Post
             key={post.id}
-            onClick={userType === 'teacher' ? () => setEditPostModalOpen(true) : () => setViewPostModalOpen(true)} userType={userType}
-            title={post.title}
-            body={post.body}
-            createdAt={post.createdAt}
-            modifiedAt={post.modifiedAt}
-            teacherName={post?.teacher_name}
+            onClick={() => handleOpenPost(post)}
+            userType={userType}
+            currentPost={post}
           />
         ))}
       </S.FeedList>

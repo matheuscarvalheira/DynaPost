@@ -4,26 +4,26 @@ import * as S from './styles';
 import { PostProps } from './props';
 import { formateDate } from '@/utils/formate-date';
 
-export const Post = ({ className, isOnModal, userType, title, body, createdAt, modifiedAt, teacherName, onClick }: PostProps) => {
+export const Post = ({ className, isOnModal, userType, currentPost, onClick }: PostProps) => {
   return (
     <S.Post className={className} onClick={onClick}>
       <S.Container>
         <S.Header>
           <S.Profile>
             <S.ProfileImage src="./imgs/profile.png"/>
-            <S.Name>{teacherName}</S.Name>
+            <S.Name></S.Name>
           </S.Profile>
 
           <S.DatesContainer>
-            <S.Date>Publicado em {formateDate(createdAt)}</S.Date>
-            {modifiedAt ? <S.Date>Editado em {formateDate(modifiedAt)}</S.Date> : null}
+            <S.Date>Publicado em {formateDate(currentPost?.createdAt)}</S.Date>
+            {currentPost?.modifiedAt ? <S.Date>Editado em {formateDate(currentPost?.modifiedAt)}</S.Date> : null}
           </S.DatesContainer>
         </S.Header>
 
         <S.ContentContainer>
           {userType === 'teacher' && !isOnModal ? <S.EditButton src="./svg/edit-icon.svg" /> : null}
-          <S.Title>{title}</S.Title>
-          <S.Content>{body}
+          <S.Title>{currentPost?.title}</S.Title>
+          <S.Content>{currentPost?.body}
           </S.Content>
         </S.ContentContainer>
       </S.Container>
