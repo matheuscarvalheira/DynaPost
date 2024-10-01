@@ -44,16 +44,14 @@ export class PostRepository implements IPostRepository {
   }): Promise<IPost[] | undefined> {
     const allPosts = await this.repository.find({
       where: [{ title: Like(`%${query}%`) }, { body: Like(`%${query}%`) }],
+      relations: ['postClassrooms'],
     })
 
     if (allPosts.length > 0) {
-      const filteredPosts = allPosts.filter(
-        async (post) =>
-          await this.postClassroomRepository.find({
-            where: { post_id: post.id, classroom_id },
-          }),
-      )
-      return filteredPosts
+      const filteredPosts = allPosts.filter((post) => {
+        return post.postClassrooms.some((postClassroom) => postClassroom.classroom_id === classroom_id);
+      });
+      return filteredPosts;
     }
   }
 
