@@ -9,7 +9,7 @@ export function getApiClient(ctx?:never): AxiosInstance{
     })
 
     api.interceptors.request.use(config => {
-      console.log('Request', config)
+      // console.log('Request', config)
       return config
     })
       
