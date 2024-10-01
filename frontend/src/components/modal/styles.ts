@@ -22,7 +22,6 @@ export const ModalBox = styled.div`
 
   @media (max-width: 900px) {
     width: 90%;
-    height: 550px;
     padding: 25px;
   }
 `

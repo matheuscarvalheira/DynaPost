@@ -15,13 +15,13 @@ export const Textarea = styled.textarea`
   font-size: 16px;
   background-color: ${({theme}) => theme.greenCharleson};
   resize: none;
-  height: 200px;
+  height: 250px;
   color: ${({theme}) => theme.white};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 600px) {
     padding: 10px 15px;
     font-size: 15px;
-    height: 250px;
+    height: 280px;
   }
 `;

@@ -3,6 +3,7 @@ import * as S from "./styles"
 import { BackendContext } from "@/contexts/backend-context"
 import { Classroom } from "@/contexts/backend-context/types"
 import { ToastError } from "@/utils/toast-error"
+import { Loader } from "@/components/loader"
 
 export const Classes: FC = () => {
 
@@ -34,11 +35,11 @@ export const Classes: FC = () => {
         <S.Main>
             <S.Title>Escolha uma turma</S.Title>
             {
-                !loading && (
+                !loading ? (
                     <S.ClassList>
                         {classrooms.map(classroom => <li key={classroom.id}><a href={`feed?classroomId=${classroom.id}`}>{classroom.name}</a></li>)}
                     </S.ClassList>
-                )
+                ) : <Loader />
             }
         </S.Main>
     )
