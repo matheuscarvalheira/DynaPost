@@ -14,6 +14,10 @@ export const Container = styled.div`
 
 export const Input = styled(_Input)`
     font-size: 19px;
+
+    @media (max-width: 600px) {
+        font-size: 17px;
+    }
 `;
 
 export const ButtonContainer = styled.div`
@@ -24,5 +28,10 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled(_Button)`
     width: 130px;
+
+    @media (max-width: 600px) {
+        width: 100px;
+        margin: 5px;
+    }
 `;
 

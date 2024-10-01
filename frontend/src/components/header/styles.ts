@@ -1,6 +1,7 @@
 'use client';
 
 import styled from "styled-components";
+import {Button as _Button} from '@/components/button'
 
 export const Header = styled.header`
   background-color: ${({theme}) => theme.blackRaisin};
@@ -8,17 +9,8 @@ export const Header = styled.header`
   padding: 20px 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
-
-  @media (max-width: 600px) {
-    padding: 15px 0;
-  }
-
-  button {
-    position: absolute;
-    right: 0;
-    top: 5%;
-  }
 `
 
 export const Title = styled.h1`
@@ -28,5 +20,15 @@ export const Title = styled.h1`
 
   @media (max-width: 600px) {
     font-size: 18px;
+  }
+`
+
+export const Button = styled(_Button)`
+  position: absolute;
+  right: 0;
+  margin: 0 15px;
+
+  @media (max-width: 600px) {
+    margin: 0 10px;
   }
 `

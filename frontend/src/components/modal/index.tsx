@@ -1,17 +1,16 @@
-import React from 'react';
-import { ModalProps } from './props';
-import { CloseModal, ModalBackground, ModalContent } from './styles';
-import { IoIosClose } from 'react-icons/io';
+import { ReactNode } from "react";
+import * as S from './styles';
+import { ModalProps } from "./props";
 
-export const Modal: React.FC<ModalProps> = ({ isopen, children }) => {
+export const Modal = ({ isOpen, handleOpen, children }: ModalProps): ReactNode => {
   return (
-    <ModalBackground isopen={isopen}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
-      {children}
-        <CloseModal onClick={(e) => e.stopPropagation()}>
-          <IoIosClose />
-        </CloseModal>
-      </ModalContent>
-    </ModalBackground>
-  );
-};
+    <S.Modal $open={isOpen}>
+      <S.ModalBox>
+        <S.Header>
+          <S.CloseIcon src='./svg/close-icon.svg' onClick={() => handleOpen(false)}/>
+        </S.Header>
+        {children}
+      </S.ModalBox>
+    </S.Modal>
+  )
+}

@@ -10,7 +10,7 @@ import { findPostsByClassroom } from './get-posts-by-classroom'
 
 export async function postRoutes(app: Application) {
   app.get('/posts/admin', findAllAdmin)
-  app.get('/posts/search/', search)
+  app.get('/posts/search/:classroom_id', search)
   app.get('/posts/classroom/:classroom_id', findPostsByClassroom)
   app.get('/posts', findAllPosts)
   app.get('/posts/:id', findPost)

@@ -7,6 +7,10 @@ export const Button = styled.button<{ buttontype?: 'open-modal' | 'delete-post' 
   padding: 10px 25px;
   border-radius: 15px;
   margin: 10px;
+
+  @media (max-width: 600px) {
+    font-size: 15px;
+  }
 `
 
 export const PlusIcon = styled.div`
@@ -32,5 +36,16 @@ export const PlusIcon = styled.div`
 
   &:after {
     transform: rotate(90deg);
+  }
+
+  @media (max-width: 600px) {
+    width: 40px;
+    height: 25px;
+
+    &::before, &:after {
+      width: 20px;
+      top: 12px;
+      left: 25%;
+    }
   }
 `

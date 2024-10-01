@@ -6,6 +6,7 @@ export const Dropdown = styled.div`
   width: 220px;
   cursor: pointer;
   position: relative;
+  margin: 10px 0;
 `
 
 export const Header = styled.div<{dropdownheight: number}>`

@@ -42,19 +42,13 @@ export const DatesContainer = styled.div`
 `;
 
 export const Date = styled.p`
-  font-size: 10px;
+  font-size: 11px;
   color: ${({ theme }) => theme.grayLight};
 `;
 
-export const Class = styled.p`
-  font-size: 13px;
-  color: ${({ theme }) => theme.grayLight};
-  margin-bottom: 10px;
-
-  @media (max-width: 600px) {
-    font-size: 11px;
-  }
-`;
+export const EditButton = styled.img`
+  float: right;
+`
 
 export const ContentContainer = styled.div``;
 
