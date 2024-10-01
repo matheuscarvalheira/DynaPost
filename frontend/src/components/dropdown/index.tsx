@@ -2,6 +2,7 @@ import { ReactNode, useRef, useState } from "react";
 import * as S from './styles'
 import { DropdownProps } from "./props";
 
+
 // Usar como template para criar componentes
 export const Dropdown = ({items}: DropdownProps): ReactNode => {
   const [current, setCurrent] = useState('Selecione a turma');
