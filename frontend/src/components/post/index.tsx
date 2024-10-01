@@ -16,7 +16,7 @@ export const Post = ({ className, isOnModal, userType, currentPost, onClick }: P
 
           <S.DatesContainer>
             <S.Date>Publicado em {formateDate(currentPost?.createdAt)}</S.Date>
-            {currentPost?.modifiedAt ? <S.Date>Editado em {formateDate(currentPost?.modifiedAt)}</S.Date> : null}
+            {currentPost?.modifiedAt && currentPost?.modifiedAt !== currentPost?.createdAt ? <S.Date>Editado em {formateDate(currentPost?.modifiedAt)}</S.Date> : null}
           </S.DatesContainer>
         </S.Header>
 

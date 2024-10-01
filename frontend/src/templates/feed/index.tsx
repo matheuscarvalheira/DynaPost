@@ -46,7 +46,7 @@ export const FeedTemplate: FC = () => {
                 setPosts(posts);
                 console.log(posts)
               } else {
-                  console.error("Erro: fetchPosts não é um array", posts);
+                  setPosts([])
               }    
           } else {
               toast.error(message as ToastContent<unknown>, {
@@ -66,6 +66,10 @@ export const FeedTemplate: FC = () => {
       setLoading(false);
   }, [getAllPosts, search, searchParams]);
 
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  }
+
   return (
     <S.Feed>
       <Modal isOpen={createPostModalOpen} handleOpen={setCreatePostModalOpen}>
@@ -82,7 +86,7 @@ export const FeedTemplate: FC = () => {
 
       <Header/>
 
-      <S.SearchInput showIcon={true} />
+      <S.SearchInput showIcon={true} value={search} onChange={handleSearchInputChange} />
 
       <S.FeedList>
         {posts.length === 0 && <S.Text>Nenhum post.</S.Text>}

@@ -23,10 +23,10 @@ export function BackendProvider({ children }: BackendProviderProps){
             }
         }
     }
-
+ 
     async function getAllPosts({ classroomId, queryString }: GetAllPostsProps): Promise<GetAllPostsResult> {
         try {
-            const { data } = await api.get(`/posts/classroom/${classroomId}?q=${queryString}`)
+            const { data } = await api.get(`/posts/search/${classroomId}?q=${queryString}`)
             return { getAllPostsOk: true, posts: data }
         } catch (error) {
             console.error('Failed to get Posts:', error)
