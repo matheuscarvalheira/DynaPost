@@ -5,6 +5,7 @@ import * as S from './styles'
 import { FormProps } from "./props";
 import { BackendContext } from "@/contexts/backend-context";
 import { useSearchParams } from 'next/navigation';
+import { ToastError } from "@/utils/toast-error";
 
 
 export const Form = ({currentPost}: FormProps): ReactNode => {
@@ -35,7 +36,7 @@ export const Form = ({currentPost}: FormProps): ReactNode => {
             if (result.deletePostOk) { 
                 window.location.reload(); 
             } else {
-                alert(result.message);  
+                ToastError(result.message);
             }
         }
     };
@@ -51,7 +52,7 @@ export const Form = ({currentPost}: FormProps): ReactNode => {
             if (result.updatePostOk) {
                 window.location.reload();
             } else {
-                alert(result.message);
+                ToastError(result.message);
             }
         } else {
             const result = await createPost({
@@ -63,7 +64,7 @@ export const Form = ({currentPost}: FormProps): ReactNode => {
             if (result.createPostOk) {
                 window.location.reload();
             } else {
-                alert(result.message);
+                ToastError(result.message);
             }
         }
     };

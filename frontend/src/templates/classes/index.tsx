@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from "react"
 import * as S from "./styles"
 import { BackendContext } from "@/contexts/backend-context"
 import { Classroom } from "@/contexts/backend-context/types"
-import { toast, ToastContent } from "react-toastify"
+import { ToastError } from "@/utils/toast-error"
 
 export const Classes: FC = () => {
 
@@ -22,16 +22,7 @@ export const Classes: FC = () => {
                     console.error("Erro: fetchedClassrooms não é um array", classrooms);
                 }    
             } else {
-                toast.error(message as ToastContent<unknown>, {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                  });
+                ToastError(message);
             }
         }
 
