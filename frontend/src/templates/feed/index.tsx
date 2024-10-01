@@ -10,6 +10,7 @@ import { toast, ToastContent } from "react-toastify";
 import { Modal } from "@/components/modal";
 import { Form } from "@/components/form";
 import { AuthContext } from "@/contexts/auth-context";
+import { Loader } from "@/components/loader";
 
 
 export const FeedTemplate: FC = () => {
@@ -89,7 +90,8 @@ export const FeedTemplate: FC = () => {
       <S.SearchInput showIcon={true} value={search} onChange={handleSearchInputChange} />
 
       <S.FeedList>
-        {posts.length === 0 && <S.Text>Nenhum post.</S.Text>}
+        {posts.length === 0 && !loading ? <S.Text>Nenhum post.</S.Text> : null}
+        {loading ? <Loader /> : null}
         {posts.map(post => (
           <Post
             key={post.id}
