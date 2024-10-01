@@ -6,11 +6,11 @@ import { Button } from "@/components/button";
 import { useSearchParams } from 'next/navigation'
 import { Post as IPost} from "@/contexts/backend-context/types";
 import { BackendContext } from "@/contexts/backend-context";
-import { toast, ToastContent } from "react-toastify";
 import { Modal } from "@/components/modal";
 import { Form } from "@/components/form";
 import { AuthContext } from "@/contexts/auth-context";
 import { Loader } from "@/components/loader";
+import { ToastError } from "@/utils/toast-error";
 
 
 export const FeedTemplate: FC = () => {
@@ -47,19 +47,10 @@ export const FeedTemplate: FC = () => {
                 setPosts(posts);
                 console.log(posts)
               } else {
-                  setPosts([])
+                  setPosts([]);
               }    
           } else {
-              toast.error(message as ToastContent<unknown>, {
-                  position: "top-right",
-                  autoClose: 2000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "dark",
-                });
+              ToastError(message);
           }
       }
 

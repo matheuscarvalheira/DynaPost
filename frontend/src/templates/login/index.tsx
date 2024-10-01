@@ -4,7 +4,7 @@ import { Button } from "@/components/button";
 import * as S from "./styles"
 import { AuthContext } from "@/contexts/auth-context";
 import { useRouter } from "next/navigation";
-import {  toast, ToastContent } from 'react-toastify';
+import { ToastError } from "@/utils/toast-error";
 
 export const LoginTemplate: FC = () => {
 
@@ -25,16 +25,7 @@ export const LoginTemplate: FC = () => {
                 if (signInOk) {
                     router.push('/classes')
                 } else {
-                    toast.error(message as ToastContent<unknown>, {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                      });
+                    ToastError(message);
                 }
             })
     }

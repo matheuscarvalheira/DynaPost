@@ -7,7 +7,7 @@ import { Option } from "@/components/radio-buttons/props";
 import { api } from "@/api/backend";
 import { AuthContext } from "@/contexts/auth-context";
 import { useRouter } from "next/navigation";
-import { toast, ToastContent } from "react-toastify";
+import { ToastError } from "@/utils/toast-error";
 
 interface IClassroom {
     id: string,
@@ -47,16 +47,7 @@ export const RegisterTemplate: FC = () => {
         const classrooms = Array.from(form.getAll('subjects')) as string[];
 
         if (password !== repeatPassword) {
-            return toast.error("Senhas não são iguais" as ToastContent<unknown>, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            })
+            return ToastError("Senhas não são iguais");
         }
 
         register({name, email, password, classrooms, userType})
@@ -65,16 +56,7 @@ export const RegisterTemplate: FC = () => {
                 if (registerOk) {
                     router.push('/login')
                 } else {
-                    toast.error(message as ToastContent<unknown>, {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                      });
+                    ToastError(message);
                 }
             }))
     }
