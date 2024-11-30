@@ -55,7 +55,7 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     })
 
     if (!user) {
-      throw new Error('usuário não registrado')
+      return { error: true, message: "Usuário não existe" }
     }
 
     const verifiedPassword = await this.comparePasswords(
@@ -64,7 +64,7 @@ export class AuthenticationRepository implements IAuthenticationRepository {
     )
 
     if (!verifiedPassword) {
-      throw new Error('e-mail ou senha inválidos')
+      return { error: true, message: 'E-mail e/ou senha inválidos' }
     }
 
     const tokenData = {

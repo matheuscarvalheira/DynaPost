@@ -1,6 +1,6 @@
 import { IPost } from '@/entities/models/post.interface'
 import { IPostRepository } from '../post.repository.interface'
-import { EntityManager, Like, Repository } from 'typeorm'
+import { EntityManager, ILike, Repository } from 'typeorm'
 import { Post } from '@/entities/post.entity'
 import { appDataSource } from '@/lib/typeorm/typeorm'
 import { PostClassroom } from '@/entities/post-classroom.entity'
@@ -43,7 +43,7 @@ export class PostRepository implements IPostRepository {
     classroom_id: string
   }): Promise<IPost[] | undefined> {
     const allPosts = await this.repository.find({
-      where: [{ title: Like(`%${query}%`) }, { body: Like(`%${query}%`) }],
+      where: [{ title: ILike(`%${query}%`) }, { body: ILike(`%${query}%`) }],
       relations: ['postClassrooms'],
     })
 
